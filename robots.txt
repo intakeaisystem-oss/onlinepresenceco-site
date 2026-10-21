@@ -1,0 +1,49 @@
+User-agent: *
+Allow: /
+Disallow: /_qa/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /_qa/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /_qa/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /_qa/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /_qa/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /_qa/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /_qa/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /_qa/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /_qa/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /_qa/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /_qa/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /_qa/
+
+Sitemap: https://onlinepresenceco.com/sitemap.xml
