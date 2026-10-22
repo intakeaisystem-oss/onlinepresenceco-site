@@ -69,16 +69,22 @@ if (bad) { st.textContent = n > 1 ? "A few things need fixing before this can se
 if (navigator.onLine === false) { fail(OFFLINE); return; }
 if (!READY) { fail("Preview only: the form is not connected yet. On the live site your request goes straight to Nathan."); return; }
 f.dataset.busy = "1"; btn.disabled = true; btn.textContent = "Sending\u2026"; st.hidden = true;
-var ac = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { if (ac) ac.abort(); fail(FAIL); }, 15000), done = false;
-fetch(AJAX, { method: "POST", headers: { Accept: "application/json" }, body: new URLSearchParams(new FormData(f)), signal: ac ? ac.signal : undefined })
+var FS = MODE === "formsubmit", WAIT = FS ? 60000 : 15000, H = { Accept: "application/json" }, body;
+if (FS) {
+var o = {}; new FormData(f).forEach(function (v, k) { o[k] = o[k] ? o[k] + ", " + v : v; });
+body = JSON.stringify(o); H["Content-Type"] = "application/json";
+} else body = new URLSearchParams(new FormData(f));
+var slow = setTimeout(function () { if (f.dataset.busy) btn.textContent = "Still sending… please keep this page open"; }, 8000);
+var ac = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { clearTimeout(slow); if (ac) ac.abort(); fail(FAIL); }, WAIT), done = false;
+fetch(AJAX, { method: "POST", headers: H, body: body, signal: ac ? ac.signal : undefined })
 .then(function (r) { return r.json().then(function (d) { return r.ok && d && (d.ok === true || d.success === true || d.success === "true"); }, function () { return false; }); })
 .then(function (ok) {
-clearTimeout(tm); if (done) return; done = true;
+clearTimeout(tm); clearTimeout(slow); if (done) return; done = true;
 if (!ok) throw 0;
 OP.sent = 1; delete f.dataset.busy;
 var t = f.parentNode.querySelector(".thanks"); f.hidden = true; t.hidden = false; t.querySelector("h3").focus();
 })
-.catch(function () { clearTimeout(tm); if (done && OP.sent) return; done = true; fail(navigator.onLine === false ? OFFLINE : FAIL); });
+.catch(function () { clearTimeout(tm); clearTimeout(slow); if (done && OP.sent) return; done = true; fail(navigator.onLine === false ? OFFLINE : FAIL); });
 });
 });
 })();
