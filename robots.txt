@@ -1,49 +1,49 @@
 User-agent: *
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: OAI-SearchBot
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: ChatGPT-User
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: GPTBot
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: PerplexityBot
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: Perplexity-User
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: Claude-SearchBot
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: Claude-User
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: ClaudeBot
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: Google-Extended
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: Applebot-Extended
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
 User-agent: Bingbot
 Allow: /
-Disallow: /onlinepresenceco-site/_qa/
+Disallow: /_qa/
 
-Sitemap: https://intakeaisystem-oss.github.io/onlinepresenceco-site/sitemap.xml
+Sitemap: https://onlinepresenceco.com/sitemap.xml

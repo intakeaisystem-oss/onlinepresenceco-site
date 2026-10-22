@@ -9,24 +9,24 @@ How quoting works: a free audit checks the business's website for lead capture, 
 We never promise rankings or placement in AI answers. Your domain is in your name from day one, and the site is yours once the setup is paid. Contact is by phone call or email only; we don't text.
 
 ## Programs
-- [Websites](https://intakeaisystem-oss.github.io/onlinepresenceco-site/services/websites/): new builds and rebuilds, phone-first, built from real photos and facts, with tap-to-call and a quote form that delivers
-- [Local SEO](https://intakeaisystem-oss.github.io/onlinepresenceco-site/services/local-seo/): Google Business Profile setup and upkeep, service and service-area pages, citations and NAP consistency, schema, review requests to every customer, monthly visibility check
-- [AI search visibility (GEO)](https://intakeaisystem-oss.github.io/onlinepresenceco-site/services/ai-search-geo/): structured data, entity consistency, answer-style content, llms.txt, AI search crawler access, monthly AI-answer checks
-- [Visitor Insights](https://intakeaisystem-oss.github.io/onlinepresenceco-site/services/visitor-insights/): analytics monitoring that finds where visitors leave and why, with a monthly Leak Report
-- [Hosting + Care](https://intakeaisystem-oss.github.io/onlinepresenceco-site/services/hosting-care/): hosting, SSL, backups, updates, uptime checks, small edits and a monthly report
+- [Websites](https://onlinepresenceco.com/services/websites/): new builds and rebuilds, phone-first, built from real photos and facts, with tap-to-call and a quote form that delivers
+- [Local SEO](https://onlinepresenceco.com/services/local-seo/): Google Business Profile setup and upkeep, service and service-area pages, citations and NAP consistency, schema, review requests to every customer, monthly visibility check
+- [AI search visibility (GEO)](https://onlinepresenceco.com/services/ai-search-geo/): structured data, entity consistency, answer-style content, llms.txt, AI search crawler access, monthly AI-answer checks
+- [Visitor Insights](https://onlinepresenceco.com/services/visitor-insights/): analytics monitoring that finds where visitors leave and why, with a monthly Leak Report
+- [Hosting + Care](https://onlinepresenceco.com/services/hosting-care/): hosting, SSL, backups, updates, uptime checks, small edits and a monthly report
 
 ## Quotes and audits
-- [How we quote](https://intakeaisystem-oss.github.io/onlinepresenceco-site/how-we-quote/): audit, findings, custom plan, straight quote
-- [Sample audit](https://intakeaisystem-oss.github.io/onlinepresenceco-site/sample-audit/): a full sample report for a fictional business
-- [Free website audit](https://intakeaisystem-oss.github.io/onlinepresenceco-site/audit/): request form
-- [No website yet](https://intakeaisystem-oss.github.io/onlinepresenceco-site/get-started/): call-back form
+- [How we quote](https://onlinepresenceco.com/how-we-quote/): audit, findings, custom plan, straight quote
+- [Sample audit](https://onlinepresenceco.com/sample-audit/): a full sample report for a fictional business
+- [Free website audit](https://onlinepresenceco.com/audit/): request form
+- [No website yet](https://onlinepresenceco.com/get-started/): call-back form
 
 ## Guides
-- [How local businesses show up in AI search answers](https://intakeaisystem-oss.github.io/onlinepresenceco-site/guides/show-up-in-ai-search/)
-- [Google Business Profile checklist for service businesses](https://intakeaisystem-oss.github.io/onlinepresenceco-site/guides/google-business-profile-checklist/)
+- [How local businesses show up in AI search answers](https://onlinepresenceco.com/guides/show-up-in-ai-search/)
+- [Google Business Profile checklist for service businesses](https://onlinepresenceco.com/guides/google-business-profile-checklist/)
 
 ## Optional
-- [Who we help](https://intakeaisystem-oss.github.io/onlinepresenceco-site/who-we-help/)
-- [About Nathan](https://intakeaisystem-oss.github.io/onlinepresenceco-site/about/)
-- [FAQ](https://intakeaisystem-oss.github.io/onlinepresenceco-site/faq/)
-- [Privacy Notice](https://intakeaisystem-oss.github.io/onlinepresenceco-site/privacy/)
+- [Who we help](https://onlinepresenceco.com/who-we-help/)
+- [About Nathan](https://onlinepresenceco.com/about/)
+- [FAQ](https://onlinepresenceco.com/faq/)
+- [Privacy Notice](https://onlinepresenceco.com/privacy/)
