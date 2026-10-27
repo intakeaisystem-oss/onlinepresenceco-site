@@ -8,3 +8,5 @@ People shown are not Online Presence Co. clients or staff. Used as illustrations
 | electrician-640.webp | photo-1758101755915-462eddc23f57 | https://unsplash.com/photos/electrician-testing-electrical-panel-with-multimeter-PkHf7BUWbtk |
 | landscaper-640.webp | photo-1734079692160-fcbe4be6ab96 | https://unsplash.com/photos/a-man-pulling-a-wheelbarrow-with-a-wheel-LVJnIiIeyO0 |
 | phone-560.webp | photo-1621905253185-95614217f357 (cropped) | https://unsplash.com/photos/man-in-red-blue-and-white-plaid-dress-shirt-wearing-yellow-hat-holding-black-smartphone-xdS9XEoKBLY |
+| hand-phone.webp (composite: our rendered sample site placed on the phone screen; white background removed) | photo-1691256676376-357c3aa66c89 | https://unsplash.com/photos/a-person-holding-a-phone-in-their-hand-u1b6E6IkSGQ |
+| sample-good/bad.webp + tools/sample_site/house.jpg (house photo inside the made-up roofer's sample site) | photo-1755114203680-d39d95efa82c | https://unsplash.com/photos/aerial-view-of-a-suburban-house-with-a-grey-roof--uvuU43FAwQ |
