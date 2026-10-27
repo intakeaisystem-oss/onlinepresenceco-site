@@ -147,3 +147,73 @@ function par() { hp = false; var y = Math.min(600, scrollY); hb.style.transform 
 addEventListener("scroll", function () { if (!hp) { hp = true; requestAnimationFrame(par); } }, { passive: true });
 }
 })();
+(function () {
+try {
+var D = document;
+var MOTION = !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+var WEEKS = 50;
+var money = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+var clamp = function (v, lo, hi) { return Math.min(hi, Math.max(lo, v)); };
+[].forEach.call(D.querySelectorAll("[data-calc]"), function (box) {
+var names = ["slipped", "close", "job"], rng = {}, num = {}, val = {};
+for (var i = 0; i < names.length; i++) {
+var n = names[i];
+rng[n] = box.querySelector('input[type=range][name="' + n + '"]');
+if (!rng[n]) return;
+num[n] = box.querySelector('input[data-pair="' + rng[n].id + '"]');
+val[n] = +rng[n].value;
+}
+var outs = {}; [].forEach.call(box.querySelectorAll("[data-out]"), function (el) { outs[el.getAttribute("data-out")] = el; });
+var sr = box.querySelector("[data-sr]");
+var shown = {}, raf = {}, srT;
+function tween(key, to) {
+var el = outs[key]; if (!el) return;
+var from = shown[key] == null ? to : shown[key]; shown[key] = to;
+if (!MOTION || from === to) { el.textContent = money(to); return; }
+cancelAnimationFrame(raf[key]); var t0 = null, dur = 450;
+raf[key] = requestAnimationFrame(function step(t) {
+if (!t0) t0 = t; var k = Math.min(1, (t - t0) / dur); k = 1 - Math.pow(1 - k, 3);
+el.textContent = money(from + (to - from) * k);
+if (k < 1) raf[key] = requestAnimationFrame(step); else el.textContent = money(to);
+});
+}
+function calc() {
+var each = val.close / 10 * val.job, year = val.slipped * each * WEEKS;
+tween("year", year); tween("month", year / 12); tween("each", each);
+if (outs.math) outs.math.textContent = val.slipped + (val.slipped === 1 ? " customer" : " customers") + " a week × " + val.close + " in 10 hire you × " + money(val.job) + " a job × " + WEEKS + " working weeks";
+if (sr) { clearTimeout(srT); srT = setTimeout(function () { sr.textContent = money(year) + " a year, " + money(year / 12) + " a month."; }, 700); }
+}
+names.forEach(function (n) {
+var r = rng[n], b = num[n];
+r.addEventListener("input", function () { val[n] = +r.value; if (b) b.value = r.value; calc(); });
+if (!b) return;
+b.addEventListener("input", function () {
+var v = parseFloat(b.value); if (isNaN(v)) return;
+val[n] = clamp(v, +r.min, +r.max); r.value = val[n]; calc();
+});
+b.addEventListener("blur", function () {
+var v = parseFloat(b.value); if (isNaN(v)) v = val[n];
+val[n] = clamp(Math.round(v), +b.min, +b.max); b.value = val[n]; r.value = val[n]; calc();
+});
+});
+var outBox = box.querySelector(".calc-out");
+if (MOTION && outBox && "IntersectionObserver" in window) {
+["year", "month", "each"].forEach(function (k) { shown[k] = 0; if (outs[k]) outs[k].textContent = money(0); });
+var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); calc(); } }, { threshold: 0.3 });
+io.observe(outBox);
+} else calc();
+});
+[].forEach.call(D.querySelectorAll("[data-check]"), function (box) {
+var n = box.querySelector("[data-check-n]"), msg = box.querySelector("[data-check-msg]");
+if (!n || !msg) return;
+var boxes = box.querySelectorAll("input[type=checkbox]");
+function upd() {
+var k = 0; [].forEach.call(boxes, function (b) { if (b.checked) k++; });
+n.textContent = k;
+msg.textContent = k === 0 ? box.getAttribute("data-r0") : k === 1 ? box.getAttribute("data-r1") : k + " " + box.getAttribute("data-rn");
+}
+[].forEach.call(boxes, function (b) { b.addEventListener("change", upd); });
+upd();
+});
+} catch (e) {  }
+})();

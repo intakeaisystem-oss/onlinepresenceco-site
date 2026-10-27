@@ -19,6 +19,7 @@ We never promise rankings or placement in AI answers. Your domain is in your nam
 - [How we quote](https://onlinepresenceco.com/how-we-quote/): audit, findings, custom plan, straight quote
 - [Sample audit](https://onlinepresenceco.com/sample-audit/): a full sample report for a fictional business
 - [Free website audit](https://onlinepresenceco.com/audit/): request form
+- [Missed call calculator](https://onlinepresenceco.com/calculator/): free tool; an owner enters missed customers a week, close rate and average job to see what those customers add up to in a year (runs in the browser, nothing sent)
 - [No website yet](https://onlinepresenceco.com/get-started/): call-back form
 
 ## Guides
