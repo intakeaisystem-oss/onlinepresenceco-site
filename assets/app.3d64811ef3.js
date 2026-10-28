@@ -23,6 +23,17 @@ if (e.key === "Escape") dds.forEach(function (d) { if (d.open) { d.open = false;
 [].forEach.call(document.querySelectorAll(".mnav-panel a"), function (a) {
 a.addEventListener("click", function () { a.closest("details").open = false; });
 });
+var sheet = document.getElementById("book-sheet");
+[].forEach.call(document.querySelectorAll("[data-book]"), function (b) {
+b.addEventListener("click", function () {
+if (!sheet || typeof sheet.showModal !== "function") { location.href = "/get-started/"; return; }
+sheet.showModal(); OP.form = "quick"; var n = sheet.querySelector("input[name=name]"); if (n) n.focus();
+});
+});
+if (sheet) {
+sheet.querySelector("[data-close]").addEventListener("click", function () { sheet.close(); });
+sheet.addEventListener("click", function (e) { if (e.target === sheet) sheet.close(); });
+}
 var CALL = '<a href="tel:+16307650559">(630) 765-0559</a>';
 var FAIL = "Your request didn't send. Please try again, or call Nathan at " + CALL + ".";
 var OFFLINE = "You look offline. Your answers are still here. Try again when you're back online, or call Nathan at " + CALL + ".";
