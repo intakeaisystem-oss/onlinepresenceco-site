@@ -9,6 +9,26 @@ U = {}; UK.forEach(function (k) { U[k] = (Q.get(k) || "").replace(/[^\w.-]/g, ""
 try { sessionStorage.setItem("op_utm", JSON.stringify(U)); } catch (e) {}
 }
 OP.utm = U || {};
+var SRC = null;
+try { SRC = JSON.parse(sessionStorage.getItem("op_src") || "null"); } catch (e) { SRC = null; }
+if (!SRC) {
+var rh = ""; try { rh = document.referrer ? new URL(document.referrer).hostname : ""; } catch (e) { rh = ""; }
+SRC = { lp: location.pathname.replace(/[^\w\-.\/]/g, "").slice(0, 120), ref: rh === location.hostname ? "" : rh.replace(/[^a-z0-9.\-]/gi, "").slice(0, 100) };
+try { sessionStorage.setItem("op_src", JSON.stringify(SRC)); } catch (e) {}
+}
+OP.src = SRC;
+OP.events = [];
+var track = OP.track = function (name, props) {
+props = props || {}; props.page = location.pathname; OP.events.push([name, props]);
+try { if (window.plausible) window.plausible(name, { props: props }); else if (window.gtag) window.gtag("event", name, props); } catch (e) {}
+};
+document.addEventListener("click", function (e) {
+var el = e.target.closest && e.target.closest("a,button"); if (!el) return;
+var h = el.getAttribute("href") || "";
+if (/^tel:/.test(h)) track("Call Click", { where: el.closest(".bookbar") ? "bar" : el.closest(".site-header,.callstrip") ? "header" : "page" });
+else if (el.hasAttribute("data-book")) track("Book Open", { where: el.closest(".bookbar") ? "bar" : "header" });
+else if (/\/audit\/?(#|$)/.test(h)) track("Audit Click", {});
+});
 var dds = [].slice.call(document.querySelectorAll("details[data-dd]"));
 dds.forEach(function (d) {
 d.addEventListener("toggle", function () {
@@ -25,14 +45,16 @@ a.addEventListener("click", function () { a.closest("details").open = false; });
 });
 var sheet = document.getElementById("book-sheet");
 [].forEach.call(document.querySelectorAll("[data-book]"), function (b) {
-b.addEventListener("click", function () {
-if (!sheet || typeof sheet.showModal !== "function") { location.href = "/get-started/"; return; }
-sheet.showModal(); OP.form = "quick"; var n = sheet.querySelector("input[name=name]"); if (n) n.focus();
+b.addEventListener("click", function (e) {
+if (!sheet || typeof sheet.showModal !== "function") return;
+e.preventDefault(); sheet.showModal(); OP.form = "quick"; var n = sheet.querySelector("input[name=name]"); if (n) n.focus();
 });
 });
 if (sheet) {
-sheet.querySelector("[data-close]").addEventListener("click", function () { sheet.close(); });
-sheet.addEventListener("click", function (e) { if (e.target === sheet) sheet.close(); });
+var busy = function () { return !!sheet.querySelector("form[data-busy]"); };
+sheet.querySelector("[data-close]").addEventListener("click", function () { if (!busy()) sheet.close(); });
+sheet.addEventListener("click", function (e) { if (e.target === sheet && !busy()) sheet.close(); });
+sheet.addEventListener("cancel", function (e) { if (busy()) e.preventDefault(); });
 }
 var CALL = '<a href="tel:+16307650559">(630) 765-0559</a>';
 var FAIL = "Your request didn't send. Please try again, or call Nathan at " + CALL + ".";
@@ -43,6 +65,7 @@ if (f.response) f.response.value = "json";
 f.page.value = location.pathname;
 f.noValidate = true;
 UK.forEach(function (k) { f[k].value = OP.utm[k] || ""; });
+if (f.landing_page) { f.landing_page.value = OP.src.lp || ""; f.referrer.value = OP.src.ref || ""; }
 var st = f.querySelector(".status"), btn = f.querySelector("button[type=submit]"), lab = btn.textContent;
 function show(el, msg) {
 var er = document.getElementById((el.id || "") + "-e");
@@ -50,6 +73,7 @@ if (er) { er.textContent = msg; er.hidden = !msg; }
 el.setAttribute("aria-invalid", msg ? "true" : "false");
 }
 function check(el) {
+if (el.hidden) { show(el, ""); return true; }
 if (el.dataset.group) { var g = !!f.querySelector('input[name="' + el.dataset.group + '"]:checked'); show(el, g ? "" : el.dataset.err); return g; }
 var v = el.value.trim(), ok;
 if (el.type === "checkbox") ok = el.checked;
@@ -60,16 +84,26 @@ else ok = !!v;
 show(el, ok ? "" : el.dataset.err); return ok;
 }
 var items = [].slice.call(f.querySelectorAll("input.in,fieldset[data-group],input[type=checkbox][name=consent]"));
+var bt = f.querySelector('fieldset[data-group="best_time"]'), dl = f.querySelector('fieldset[data-group="delivery"]');
+if (bt && dl) {
+var syncBT = function () {
+var em = !!f.querySelector('input[name="delivery"][value^="Email"]:checked');
+bt.hidden = em; if (em) [].forEach.call(bt.querySelectorAll("input"), function (i) { i.checked = false; });
+};
+dl.addEventListener("change", syncBT); syncBT();
+}
 items.forEach(function (el) {
 el.addEventListener(el.dataset.group || el.type === "checkbox" ? "change" : "input", function () { if (el.getAttribute("aria-invalid") === "true") check(el); });
 });
+var startEv = function () { if (!f.dataset.started) { f.dataset.started = "1"; track("Form Start", { form: f.dataset.formType }); } };
+f.addEventListener("input", startEv); f.addEventListener("change", startEv);
 f.addEventListener("focusin", function (e) {
 var n = e.target && e.target.name;
 if (!n || n.charAt(0) === "_" || n === "hp_note") return;
 OP.form = f.dataset.formType; OP.field = n;
 });
 function fail(msg) {
-delete f.dataset.busy; st.innerHTML = msg; st.hidden = false; btn.disabled = false; btn.textContent = lab; st.focus();
+track("Form Error", { form: f.dataset.formType }); delete f.dataset.busy; st.innerHTML = msg; st.hidden = false; btn.disabled = false; btn.textContent = lab; st.focus();
 }
 f.addEventListener("submit", function (ev) {
 ev.preventDefault();
@@ -93,6 +127,7 @@ fetch(AJAX, { method: "POST", headers: H, body: body, signal: ac ? ac.signal : u
 clearTimeout(tm); clearTimeout(slow); if (done) return; done = true;
 if (!ok) throw 0;
 OP.sent = 1; delete f.dataset.busy;
+track("Lead Sent", { form: f.dataset.formType });
 var t = f.parentNode.querySelector(".thanks"); f.hidden = true; t.hidden = false; t.querySelector("h3").focus();
 })
 .catch(function () { clearTimeout(tm); clearTimeout(slow); if (done && OP.sent) return; done = true; fail(navigator.onLine === false ? OFFLINE : FAIL); });
@@ -175,7 +210,8 @@ num[n] = box.querySelector('input[data-pair="' + rng[n].id + '"]');
 val[n] = +rng[n].value;
 }
 var outs = {}; [].forEach.call(box.querySelectorAll("[data-out]"), function (el) { outs[el.getAttribute("data-out")] = el; });
-var sr = box.querySelector("[data-sr]");
+var sr = box.querySelector("[data-sr]"), lab = box.querySelector("[data-label]");
+var mine = function () { if (lab) lab.textContent = "With your numbers, those customers add up to"; };
 var shown = {}, raf = {}, srT;
 function tween(key, to) {
 var el = outs[key]; if (!el) return;
@@ -196,10 +232,10 @@ if (sr) { clearTimeout(srT); srT = setTimeout(function () { sr.textContent = mon
 }
 names.forEach(function (n) {
 var r = rng[n], b = num[n];
-r.addEventListener("input", function () { val[n] = +r.value; if (b) b.value = r.value; calc(); });
+r.addEventListener("input", function () { mine(); val[n] = +r.value; if (b) b.value = r.value; calc(); });
 if (!b) return;
 b.addEventListener("input", function () {
-var v = parseFloat(b.value); if (isNaN(v)) return;
+mine(); var v = parseFloat(b.value); if (isNaN(v)) return;
 val[n] = clamp(v, +r.min, +r.max); r.value = val[n]; calc();
 });
 b.addEventListener("blur", function () {
