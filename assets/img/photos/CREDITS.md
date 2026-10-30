@@ -26,3 +26,21 @@ People shown are not Online Presence Co. clients or staff. Used as illustrations
 | plumber-*.webp | photo-1676210134188-4c05dd172f89 | https://unsplash.com/photos/a-man-working-on-a-pipe-in-a-wall-c314Gh8dXAo |
 
 Licence re-check 2026-10-27 (Nathan's Chrome, each Unsplash photo page: "Unsplash License" present, "Unsplash+ License" absent): deck-crew Dbn68nqrA14, plumber-toilet VAGbjhkxg6I, plumber-sink wzIjLL4KB-4, elec-shield LMb98OOtoYU, elec-hardhat -0-kl1BjvFc, aerial-house -uvuU43FAwQ, hand-phone u1b6E6IkSGQ: all free, none Unsplash+.
+
+## Added 2026-10-30 (v14, any-business photos; Unsplash License, free tier; images.unsplash.com, not Unsplash+)
+- cafe-owners: photo by Vitaly Gariev on Unsplash, https://unsplash.com/photos/two-cafe-owners-proudly-stand-together-dU3KJqyYlO0 (image id photo-1753351052617-62818ffc9173)
+- apron-phone: photo by Ali Mkumbwa on Unsplash, https://unsplash.com/photos/a-man-in-an-apron-looking-at-a-cell-phone-uk3ey_vhDKA (image id photo-1687422808248-f807f4ea2a2e)
+- stylist: photo by Adam Winger on Unsplash, https://unsplash.com/photos/hairstylist-blow-drying-client-hair-FkAZqQJTbXM (image id photo-1580618672591-eb180b1a973f)
+- mechanic: photo by Christian Buehner on Unsplash, https://unsplash.com/photos/hands-working-on-car-engine-Fd6osyVbtG4 (image id photo-1619642751034-765dfdf7c58e)
+- coffee-owner: photo by Vitaly Gariev on Unsplash, https://unsplash.com/photos/a-smiling-woman-stands-in-her-coffee-shop-QGg-vsPYbu8 (image id photo-1753351052363-53ce102830eb)
+- florist: photo by Oxana Melis on Unsplash, https://unsplash.com/photos/a-woman-arranging-flowers-in-a-vase-on-a-table-X_7Qb2Tg_6g (image id photo-1642751652611-bb9a7cad58a3)
+- builder: photo by Josh Olalde on Unsplash, https://unsplash.com/photos/construction-worker-in-hard-hat-on-building-frame-X1P1_EDNnok (image id photo-1587582423116-ec07293f0395)
+- electrician2: photo by Emmanuel Ikwuegbu on Unsplash, https://unsplash.com/photos/electrician-installing-wiring-with-yellow-hardhat-_2AlIm-F6pw (image id photo-1621905251189-08b45d6a269e)
+- cleaner: photo by Vitaly Gariev on Unsplash, https://unsplash.com/photos/a-woman-mops-a-bright-modern-living-room-floor-2NcTLdFHpH8 (image id photo-1758273238415-01ec03d9ef27)
+- groomer: photo by Buddy AN on Unsplash, https://unsplash.com/photos/a-small-white-dog-being-cut-with-a-pair-of-scissors-LpK2xddrElI (image id photo-1719464454959-9cf304ef4774)
+- baker: photo by Anh Tran on Unsplash, https://unsplash.com/photos/baker-inside-glass-covered-store-qPQqZ0y-rJ0 (image id photo-1504128668912-f893e6606db6)
+- phone-smile: photo by Ali Mkumbwa on Unsplash, https://unsplash.com/photos/a-man-smiles-while-looking-at-his-cell-phone-K-f_gTvdwTM (image id photo-1687422811062-a966b55cb217)
+
+Licence check 2026-10-30 (Nathan's computer, built-in browser, each Unsplash photo page fetched: "Unsplash License" present, "Unsplash+ License" absent): cafe-owners dU3KJqyYlO0, apron-phone uk3ey_vhDKA, stylist FkAZqQJTbXM, mechanic Fd6osyVbtG4, coffee-owner vsPYbu8, florist X_7Qb2Tg_6g, builder X1P1_EDNnok, electrician2 _2AlIm-F6pw, cleaner 2NcTLdFHpH8, groomer LpK2xddrElI, baker rJ0, phone-smile f_gTvdwTM: all free, none Unsplash+.
+
+Rules (R10/O36, O37): no face-to-camera portrait is presented as a client; no photo on /about/ or by the founder block unless it is Nathan with his OK; Unsplash photos have no model release, so never pair a person in one with a quote, a name or a result. Every section with people photos carries its own stock-photo note.
