@@ -138,6 +138,40 @@ var t = f.parentNode.querySelector(".thanks"), rb = t.querySelector("[data-ref]"
 });
 })();
 (function () {
+var html = document.documentElement, motion = html.classList.contains("js");
+var rv = document.querySelectorAll(".xr, .x-stat");
+if (motion && rv.length) {
+var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("xin"); io.unobserve(e.target); count(e.target); } }); }, { threshold: .15, rootMargin: "0px 0px -40px 0px" });
+rv.forEach(function (el, i) { el.style.transitionDelay = (i % 4) * 70 + "ms"; io.observe(el); });
+} else { rv.forEach(function (el) { el.classList.add("xin"); }); }
+function count(el) {
+var n = el.querySelector && el.querySelector("[data-count]"); if (!n) return;
+var end = +n.getAttribute("data-count"), t0 = null;
+function step(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 900); n.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); }
+requestAnimationFrame(step);
+}
+var rot = document.querySelector("[data-rot]");
+if (rot && motion) {
+var words = rot.getAttribute("data-rot").split("|"), m = rot.querySelector(".x-mark"), i = 0;
+setInterval(function () { i = (i + 1) % words.length; m.textContent = words[i]; rot.classList.remove("swap"); void rot.offsetWidth; rot.classList.add("swap"); }, 2200);
+}
+var cyc = document.querySelector("[data-cycle]");
+if (cyc && motion) {
+var imgs = cyc.querySelectorAll("img"), j = 0;
+setInterval(function () { imgs[j].classList.remove("on"); j = (j + 1) % imgs.length; imgs[j].removeAttribute("loading"); imgs[j].classList.add("on"); }, 3200);
+}
+var stage = document.querySelector(".x-demo-stage");
+document.querySelectorAll("[data-demo]").forEach(function (b) {
+b.addEventListener("click", function () {
+var v = b.getAttribute("data-demo");
+document.querySelectorAll("[data-demo]").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+document.querySelectorAll("[data-demo-list]").forEach(function (l) { l.hidden = l.getAttribute("data-demo-list") !== v; });
+if (stage) stage.setAttribute("data-show", v);
+if (window.OP && OP.track) try { OP.track("Demo Toggle", { v: v }); } catch (e) {}
+});
+});
+})();
+(function () {
 var D = document, R = D.documentElement;
 var MOTION = !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
 if (!MOTION || !("IntersectionObserver" in window)) { R.classList.remove("js"); R.classList.add("no-motion"); return; }
