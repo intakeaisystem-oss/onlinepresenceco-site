@@ -66,6 +66,8 @@ f.page.value = location.pathname;
 f.noValidate = true;
 UK.forEach(function (k) { f[k].value = OP.utm[k] || ""; });
 if (f.landing_page) { f.landing_page.value = OP.src.lp || ""; f.referrer.value = OP.src.ref || ""; }
+var mkRef = function () { var d = new Date(), c = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", r = ""; for (var i = 0; i < 4; i++) r += c.charAt(Math.floor(Math.random() * c.length)); return "OPC-" + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2) + "-" + r; };
+if (f.ref) f.ref.value = mkRef();
 var st = f.querySelector(".status"), btn = f.querySelector("button[type=submit]"), lab = btn.textContent;
 function show(el, msg) {
 var er = document.getElementById((el.id || "") + "-e");
@@ -117,6 +119,7 @@ f.dataset.busy = "1"; btn.disabled = true; btn.textContent = "Sending\u2026"; st
 var FS = MODE === "formsubmit", WAIT = FS ? 60000 : 15000, H = { Accept: "application/json" }, body;
 if (FS) {
 var o = {}; new FormData(f).forEach(function (v, k) { o[k] = o[k] ? o[k] + ", " + v : v; });
+if (o._subject && o.ref) o._subject = o._subject + " · " + o.ref + " · " + String(o.name || "").slice(0, 40);
 body = JSON.stringify(o); H["Content-Type"] = "application/json";
 } else body = new URLSearchParams(new FormData(f));
 var slow = setTimeout(function () { if (f.dataset.busy) btn.textContent = "Still sending… please keep this page open"; }, 8000);
@@ -128,7 +131,7 @@ clearTimeout(tm); clearTimeout(slow); if (done) return; done = true;
 if (!ok) throw 0;
 OP.sent = 1; delete f.dataset.busy;
 track("Lead Sent", { form: f.dataset.formType });
-var t = f.parentNode.querySelector(".thanks"); f.hidden = true; t.hidden = false; t.querySelector("h3").focus();
+var t = f.parentNode.querySelector(".thanks"), rb = t.querySelector("[data-ref]"); if (rb && f.ref) rb.textContent = f.ref.value; f.hidden = true; t.hidden = false; t.querySelector("h3").focus();
 })
 .catch(function () { clearTimeout(tm); clearTimeout(slow); if (done && OP.sent) return; done = true; fail(navigator.onLine === false ? OFFLINE : FAIL); });
 });
