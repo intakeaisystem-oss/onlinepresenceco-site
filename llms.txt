@@ -1,19 +1,29 @@
 # Online Presence Co.
 
-> Websites, local SEO, AI search visibility (GEO), visitor insights, and hosting + care for contractors, trades, home services and local service businesses. Run by Nathan, who works construction himself and quotes every job on a phone call. Phone: (630) 765-0559.
+> Online Presence Co. builds websites, sets up and looks after Google Business Profiles, and does local SEO, AI search setup, Visitor Insights and hosting + care for local businesses. It is owned and run by Nathan, who works construction in McHenry County, Illinois. In person around Crystal Lake, McHenry County and the Chicago suburbs. Online, for businesses anywhere in the US. Phone: (630) 765-0559.
 
-We help contractors, trades, home-service and other local service businesses get found and get called. In person we cover Crystal Lake, McHenry County and the Chicago suburbs. Online we work with businesses anywhere in the US.
+## Key facts
+- Business name: Online Presence Co.
+- Owner: Nathan. Clients deal with him directly, before and after they pay.
+- Based in: Crystal Lake, Illinois. A service-area business; no street address is published.
+- Who it works with: any local business, including contractors and trades, home services, restaurants and cafes, salons and barbers, auto shops and retail shops.
+- Where: In person around Crystal Lake, McHenry County and the Chicago suburbs. Online, for businesses anywhere in the US.
+- Contact: phone (630) 765-0559, or the forms at https://onlinepresenceco.com. Calls and email only. We don't text.
+- Pricing: no packages and no price list online. Every business is different. Nathan gives you a straight quote after a short call.
+- Ownership: Your domain is in your name from day one, and the site is yours once the setup is paid.
+- Promises: We never promise rankings. Nobody honestly can. We report what the AI tools say. We never promise placement.
+- Track record: a new business. Clients would be among Nathan's first, so there are no reviews yet.
 
-How quoting works: a free audit checks the business's website for lead capture, basic SEO, AI-search readiness and automation. Each finding maps to a fix and to one of our 5 programs. Nathan builds a custom plan on a call from the findings that matter to the owner. There are no packages and no fixed prices online. Every business is different. Nathan gives you a straight quote after a short call.
+How quoting works: a free audit checks a business's website for its call button, quote form, speed, basic SEO and whether AI search tools can read it. Nathan also checks some things by hand. On a short call he keeps the fixes that matter to the owner and gives one price, with the scope in writing before anything is paid.
 
-We never promise rankings or placement in AI answers. Your domain is in your name from day one, and the site is yours once the setup is paid. Contact is by phone call or email only; we don't text.
-
-## Programs
-- [Websites](https://onlinepresenceco.com/services/websites/): new builds and rebuilds, phone-first, built from real photos and facts, with tap-to-call and a quote form that delivers
-- [Local SEO](https://onlinepresenceco.com/services/local-seo/): Google Business Profile setup and upkeep, service and service-area pages, citations and NAP consistency, schema, review requests to every customer, monthly visibility check
-- [AI search visibility (GEO)](https://onlinepresenceco.com/services/ai-search-geo/): structured data, entity consistency, answer-style content, llms.txt, AI search crawler access, monthly AI-answer checks
+## Services
+- [All services](https://onlinepresenceco.com/services/): the five services on one page
+- [Websites](https://onlinepresenceco.com/services/websites/): new builds and rebuilds, made for phones, built from real photos and facts, with tap-to-call and a quote form that reaches the owner
+- [Local SEO and Google Business Profile](https://onlinepresenceco.com/services/local-seo/): Google Business Profile setup and upkeep, service and service-area pages, citations and name/address/phone consistency, schema, review requests to every customer
+- [AI search setup (GEO)](https://onlinepresenceco.com/services/ai-search-geo/): structured data, consistent business details, answer-style content, llms.txt, AI search crawler access, monthly AI-answer checks
 - [Visitor Insights](https://onlinepresenceco.com/services/visitor-insights/): analytics monitoring that finds where visitors leave and why, with a monthly Leak Report
 - [Hosting + Care](https://onlinepresenceco.com/services/hosting-care/): hosting, SSL, backups, updates, uptime checks, small edits and a monthly report
+- [Crystal Lake and McHenry County](https://onlinepresenceco.com/crystal-lake-web-design/): websites and Google listings for local businesses in the area
 
 ## Quotes and audits
 - [How we quote](https://onlinepresenceco.com/how-we-quote/): audit, findings, custom plan, straight quote
@@ -25,6 +35,7 @@ We never promise rankings or placement in AI answers. Your domain is in your nam
 ## Guides
 - [How local businesses show up in AI search answers](https://onlinepresenceco.com/guides/show-up-in-ai-search/)
 - [Google Business Profile checklist for service businesses](https://onlinepresenceco.com/guides/google-business-profile-checklist/)
+- [Whose name is on your domain?](https://onlinepresenceco.com/your-domain/): how to check who a web address is registered to
 
 ## Optional
 - [Who we help](https://onlinepresenceco.com/who-we-help/)

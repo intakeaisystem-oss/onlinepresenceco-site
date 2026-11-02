@@ -65,6 +65,13 @@ sheet.addEventListener("cancel", function (e) { if (busy()) e.preventDefault(); 
 }
 var CALL = '<a href="tel:+16307650559">(630) 765-0559</a>';
 var FAIL = "Your request didn't send. Please try again, or call Nathan at " + CALL + ".";
+var LEADS = "intakeaisystem@gmail.com";
+function mailLink(f) {
+var skip = { _subject: 1, _template: 1, _captcha: 1, _next: 1, _honey: 1, hp_note: 1, consent_version: 1, landing_page: 1, referrer: 1, utm_source: 1, utm_medium: 1, utm_campaign: 1 }, lines = [];
+new FormData(f).forEach(function (v, k) { if (!skip[k] && String(v).trim()) lines.push(k.replace(/_/g, " ") + ": " + v); });
+var sub = (f._subject ? f._subject.value : "Website request") + (f.ref ? " " + f.ref.value : "");
+return "mailto:" + LEADS + "?subject=" + encodeURIComponent(sub) + "&body=" + encodeURIComponent(lines.join("\n"));
+}
 var OFFLINE = "You look offline. Your answers are still here. Try again when you're back online, or call Nathan at " + CALL + ".";
 var AJAX = MODE === "formsubmit" ? EP.replace(/formsubmit\.co\/(?!ajax\/)/, "formsubmit.co/ajax/") : EP;
 [].forEach.call(document.querySelectorAll("form.lead"), function (f) {
@@ -112,7 +119,18 @@ if (!n || n.charAt(0) === "_" || n === "hp_note") return;
 OP.form = f.dataset.formType; OP.field = n;
 });
 function fail(msg) {
-track("Form Error", { form: f.dataset.formType }); delete f.dataset.busy; st.innerHTML = msg; st.hidden = false; btn.disabled = false; btn.textContent = lab; st.focus();
+track("Form Error", { form: f.dataset.formType }); delete f.dataset.busy;
+var t0 = f.parentNode.querySelector(".thanks"); if (t0 && !t0.hidden) { t0.hidden = true; f.hidden = false; OP.sent = 0; }
+st.innerHTML = msg + ' <a class="mail-fallback" href="' + mailLink(f) + '" data-ev="mail-fallback">Or send it by email instead</a>';
+st.hidden = false; btn.disabled = false; btn.textContent = lab; st.focus();
+}
+function showThanks(confirmed) {
+var t = f.parentNode.querySelector(".thanks"), h = t.querySelector("h3"), rb = t.querySelector("[data-ref]");
+if (!h.dataset.done) h.dataset.done = h.textContent;
+if (rb && f.ref) rb.textContent = f.ref.value;
+h.textContent = confirmed ? h.dataset.done : "Sending your request to Nathan\u2026 keep this page open until it says it's sent. Or call (630) 765-0559.";
+t.classList.toggle("is-pending", !confirmed);
+if (t.hidden) { f.hidden = true; t.hidden = false; h.focus(); }
 }
 f.addEventListener("submit", function (ev) {
 ev.preventDefault();
@@ -129,18 +147,18 @@ var o = {}; new FormData(f).forEach(function (v, k) { o[k] = o[k] ? o[k] + ", " 
 if (o._subject && o.ref) o._subject = o._subject + " · " + o.ref + " · " + String(o.name || "").slice(0, 40);
 body = JSON.stringify(o); H["Content-Type"] = "application/json";
 } else body = new URLSearchParams(new FormData(f));
-var slow = setTimeout(function () { if (f.dataset.busy) btn.textContent = "Still sending… please keep this page open"; }, 8000);
+var slow = setTimeout(function () { if (f.dataset.busy && !OP.sent) { OP.sent = 1; showThanks(false); track("Lead Pending", { form: f.dataset.formType }); } }, 3500);
 var ac = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { clearTimeout(slow); if (ac) ac.abort(); fail(FAIL); }, WAIT), done = false;
-fetch(AJAX, { method: "POST", headers: H, body: body, signal: ac ? ac.signal : undefined })
+fetch(AJAX, { method: "POST", headers: H, body: body, keepalive: body.length < 60000, signal: ac ? ac.signal : undefined })
 .then(function (r) { return r.json().then(function (d) { return r.ok && d && (d.ok === true || d.success === true || d.success === "true"); }, function () { return false; }); })
 .then(function (ok) {
 clearTimeout(tm); clearTimeout(slow); if (done) return; done = true;
 if (!ok) throw 0;
 OP.sent = 1; delete f.dataset.busy;
 track("Lead Sent", { form: f.dataset.formType });
-var t = f.parentNode.querySelector(".thanks"), rb = t.querySelector("[data-ref]"); if (rb && f.ref) rb.textContent = f.ref.value; f.hidden = true; t.hidden = false; t.querySelector("h3").focus();
+showThanks(true);
 })
-.catch(function () { clearTimeout(tm); clearTimeout(slow); if (done && OP.sent) return; done = true; fail(navigator.onLine === false ? OFFLINE : FAIL); });
+.catch(function () { clearTimeout(tm); clearTimeout(slow); if (done) return; done = true; fail(navigator.onLine === false ? OFFLINE : FAIL); });
 });
 });
 })();
@@ -156,6 +174,13 @@ var n = el.querySelector && el.querySelector("[data-count]"); if (!n) return;
 var end = +n.getAttribute("data-count"), t0 = null;
 function step(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 900); n.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); }
 requestAnimationFrame(step);
+}
+if ("IntersectionObserver" in window) {
+var quiet = new Set(), qio = new IntersectionObserver(function (es) {
+es.forEach(function (e) { if (e.isIntersecting) quiet.add(e.target); else quiet.delete(e.target); });
+document.documentElement.classList.toggle("opc-quiet", quiet.size > 0);
+}, { threshold: 0.05 });
+[].forEach.call(document.querySelectorAll("#top, form[data-form-type], .actionbar-sentinel"), function (el) { qio.observe(el); });
 }
 var vis = {};
 function watch(el, key) {
