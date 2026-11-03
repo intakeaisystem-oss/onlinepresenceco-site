@@ -22,7 +22,7 @@ How quoting works: a free audit checks a business's website for its call button,
 - [Local SEO and Google Business Profile](https://onlinepresenceco.com/services/local-seo/): Google Business Profile setup and upkeep, service and service-area pages, citations and name/address/phone consistency, schema, review requests to every customer
 - [AI search setup (GEO)](https://onlinepresenceco.com/services/ai-search-geo/): structured data, consistent business details, answer-style content, llms.txt, AI search crawler access, monthly AI-answer checks
 - [Visitor Insights](https://onlinepresenceco.com/services/visitor-insights/): analytics monitoring that finds where visitors leave and why, with a monthly Leak Report
-- [Hosting + Care](https://onlinepresenceco.com/services/hosting-care/): hosting, SSL, backups, updates, uptime checks, small edits and a monthly report
+- [Hosting and care](https://onlinepresenceco.com/services/hosting-care/): hosting, SSL, backups, updates, uptime checks, small edits and a monthly report
 - [Crystal Lake and McHenry County](https://onlinepresenceco.com/crystal-lake-web-design/): websites and Google listings for local businesses in the area
 
 ## Quotes and audits
