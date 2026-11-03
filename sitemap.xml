@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>https://onlinepresenceco.com/about/</loc><lastmod>2026-11-02</lastmod></url>
   <url><loc>https://onlinepresenceco.com/audit/</loc><lastmod>2026-11-02</lastmod></url>
-  <url><loc>https://onlinepresenceco.com/calculator/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://onlinepresenceco.com/calculator/</loc><lastmod>2026-11-02</lastmod></url>
   <url><loc>https://onlinepresenceco.com/crystal-lake-web-design/</loc><lastmod>2026-11-02</lastmod></url>
   <url><loc>https://onlinepresenceco.com/faq/</loc><lastmod>2026-11-02</lastmod></url>
   <url><loc>https://onlinepresenceco.com/get-started/</loc><lastmod>2026-11-02</lastmod></url>
@@ -19,6 +19,22 @@
   <url><loc>https://onlinepresenceco.com/services/visitor-insights/</loc><lastmod>2026-11-02</lastmod></url>
   <url><loc>https://onlinepresenceco.com/services/websites/</loc><lastmod>2026-11-02</lastmod></url>
   <url><loc>https://onlinepresenceco.com/services/</loc><lastmod>2026-11-02</lastmod></url>
-  <url><loc>https://onlinepresenceco.com/who-we-help/</loc><lastmod>2026-10-30</lastmod></url>
-  <url><loc>https://onlinepresenceco.com/your-domain/</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://onlinepresenceco.com/who-we-help/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://onlinepresenceco.com/your-domain/</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://onlinepresenceco.com/china/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/services/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/services/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/services/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/sample-site/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/sample-site/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/sample-site/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/how-it-works/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/how-it-works/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/how-it-works/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/resources/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/resources/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/resources/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/about/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/about/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/about/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/faq/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/faq/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/faq/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/contact/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/contact/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/contact/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/en/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/en/services/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/services/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/services/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/en/sample-site/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/sample-site/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/sample-site/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/en/how-it-works/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/how-it-works/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/how-it-works/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/en/resources/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/resources/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/resources/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/en/about/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/about/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/about/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/en/faq/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/faq/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/faq/"/></url>
+  <url><loc>https://onlinepresenceco.com/china/en/contact/</loc><lastmod>2026-11-02</lastmod><xhtml:link rel="alternate" hreflang="zh-Hans" href="https://onlinepresenceco.com/china/contact/"/><xhtml:link rel="alternate" hreflang="en" href="https://onlinepresenceco.com/china/en/contact/"/></url>
 </urlset>
