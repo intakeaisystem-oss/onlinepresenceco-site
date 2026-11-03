@@ -1,5 +1,5 @@
 (function () {
-var EP = "https://formsubmit.co/b2bd32dd5392f93db7249dfc282c8bf9", MODE = "formsubmit", READY = /^https:\/\//.test(EP);
+var EP = "https://script.google.com/macros/s/AKfycbw8twuCcLLaw4rgTMWBinLeOsKUYxM-Shx3cOYnxpJPcJce4XR4RiS-HhTBcfcpOpd1/exec", MODE = "apps-script", READY = /^https:\/\//.test(EP);
 var Q = new URLSearchParams(location.search);
 var OP = window.OP = window.OP || { form: "", field: "", sent: 0 };
 var UK = ["utm_source", "utm_medium", "utm_campaign"], U = null;
@@ -146,10 +146,13 @@ if (FS) {
 var o = {}; new FormData(f).forEach(function (v, k) { o[k] = o[k] ? o[k] + ", " + v : v; });
 if (o._subject && o.ref) o._subject = o._subject + " · " + o.ref + " · " + String(o.name || "").slice(0, 40);
 body = JSON.stringify(o); H["Content-Type"] = "application/json";
-} else body = new URLSearchParams(new FormData(f));
+} else {
+body = new URLSearchParams(new FormData(f));
+if (!body.get("best_time") && body.get("delivery")) body.set("best_time", body.get("delivery"));
+}
 var slow = setTimeout(function () { if (f.dataset.busy && !OP.sent) { OP.sent = 1; showThanks(false); track("Lead Pending", { form: f.dataset.formType }); } }, 3500);
 var ac = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { clearTimeout(slow); if (ac) ac.abort(); fail(FAIL); }, WAIT), done = false;
-fetch(AJAX, { method: "POST", headers: H, body: body, keepalive: body.length < 60000, signal: ac ? ac.signal : undefined })
+fetch(AJAX, { method: "POST", headers: H, body: body, keepalive: String(body).length < 60000, signal: ac ? ac.signal : undefined })
 .then(function (r) { return r.json().then(function (d) { return r.ok && d && (d.ok === true || d.success === true || d.success === "true"); }, function () { return false; }); })
 .then(function (ok) {
 clearTimeout(tm); clearTimeout(slow); if (done) return; done = true;
@@ -208,6 +211,56 @@ if (stage) stage.setAttribute("data-show", v);
 if (window.OP && OP.track) try { OP.track("Demo Toggle", { v: v }); } catch (e) {}
 });
 });
+})();
+(function () {
+var EP = "https://script.google.com/macros/s/AKfycbw8twuCcLLaw4rgTMWBinLeOsKUYxM-Shx3cOYnxpJPcJce4XR4RiS-HhTBcfcpOpd1/exec";
+if (!/^https:\/\/script\.google\.com\//.test(EP) || !navigator.sendBeacon) return;
+if (navigator.globalPrivacyControl === true || navigator.doNotTrack === "1" || window.doNotTrack === "1") return;
+var OP = window.OP = window.OP || { form: "", field: "", sent: 0 };
+var FIELDS = /^(name|business|business_type|website|phone|email|best_time|consent|services|hear_about)$/;
+function rid() {
+var a = new Uint8Array(12), s = "", c = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+(window.crypto || window.msCrypto).getRandomValues(a);
+for (var i = 0; i < a.length; i++) s += c.charAt(a[i] % 62);
+return s;
+}
+var pageId = rid(), visitId = pageId;
+try { visitId = sessionStorage.getItem("op_vid") || ""; if (!/^[A-Za-z0-9]{8,32}$/.test(visitId)) { visitId = rid(); sessionStorage.setItem("op_vid", visitId); } } catch (e) { visitId = pageId; }
+var maxScroll = 0, shown = Date.now(), visible = 0, called = 0, last = "", sent = 0;
+function scroll() {
+var h = document.documentElement, total = h.scrollHeight - h.clientHeight;
+var p = total > 0 ? Math.round((h.scrollTop || document.body.scrollTop) / total * 100) : 100;
+if (p > maxScroll) maxScroll = Math.min(100, p);
+}
+addEventListener("scroll", scroll, { passive: true }); scroll();
+document.addEventListener("click", function (e) { var a = e.target.closest && e.target.closest("[data-ev=call]"); if (a) called = 1; });
+document.addEventListener("visibilitychange", function () {
+if (document.visibilityState === "hidden") { visible += Date.now() - shown; } else { shown = Date.now(); }
+});
+function host(u) { try { var h = new URL(u).hostname; return h === location.hostname ? "" : h; } catch (e) { return ""; } }
+function send() {
+if (sent >= 3) return;
+if (document.visibilityState !== "hidden") { visible += Date.now() - shown; shown = Date.now(); }
+var Q = new URLSearchParams(location.search), b = new URLSearchParams();
+b.set("kind", "event"); b.set("v", "1");
+b.set("page_id", pageId); b.set("visit_id", visitId);
+b.set("page", location.pathname.replace(/[^A-Za-z0-9\-._~\/]/g, "").slice(0, 200));
+b.set("ref", host(document.referrer).toLowerCase().replace(/[^a-z0-9.\-]/g, "").slice(0, 100));
+["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) { b.set(k, ((OP.utm || {})[k] || Q.get(k) || "").replace(/[^\w.-]/g, "").slice(0, 60)); });
+b.set("scroll", String(Math.round(maxScroll / 10) * 10));
+b.set("secs", String(Math.min(3600, Math.round(visible / 1000))));
+b.set("form", OP.form === "audit" || OP.form === "call" || OP.form === "quick" ? OP.form : "");
+b.set("started", OP.form ? "1" : "0");
+b.set("last_field", FIELDS.test(OP.field) ? OP.field : "");
+b.set("submitted", OP.sent ? "1" : "0");
+b.set("call_tap", String(called));
+var key = b.toString().replace(/&secs=\d+/, "");
+if (key === last) return;
+last = key; sent++;
+navigator.sendBeacon(EP, b);
+}
+document.addEventListener("visibilitychange", function () { if (document.visibilityState === "hidden") send(); });
+addEventListener("pagehide", send);
 })();
 (function () {
 var D = document, R = D.documentElement;
