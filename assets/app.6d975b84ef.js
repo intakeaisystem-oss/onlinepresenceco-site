@@ -47,6 +47,14 @@ if (e.key === "Escape") dds.forEach(function (d) { if (d.open) { d.open = false;
 [].forEach.call(document.querySelectorAll("[data-mnav-close]"), function (x) {
 x.addEventListener("click", function () { var d = x.closest("details"); d.open = false; d.querySelector("summary").focus({ preventScroll: true }); });
 });
+[].forEach.call(document.querySelectorAll("[data-ask]"), function (b) {
+var c = document.getElementById("op-chat"); if (!c) return;
+b.hidden = false;
+b.addEventListener("click", function () {
+var d = b.closest("details"); if (d) d.open = false;
+setTimeout(function () { var t = c.querySelector(".opc-btn"); if (t) t.click(); }, 60);
+});
+});
 [].forEach.call(document.querySelectorAll(".mnav-panel a"), function (a) {
 a.addEventListener("click", function () { a.closest("details").open = false; });
 });
