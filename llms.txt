@@ -19,7 +19,6 @@
 - [Store and checkout fixes](https://onlinepresenceco.com/services/#store-fixes): If you sell directly to U.S. customers on your own store, we fix what makes them leave before paying.
 
 ## Pages
-- [Free tools: shipping weight calculator and export gap check](https://onlinepresenceco.com/tools/)
 - [How it works](https://onlinepresenceco.com/how-it-works/)
 - [FAQ](https://onlinepresenceco.com/faq/)
 - [Contact / free gap check](https://onlinepresenceco.com/contact/)

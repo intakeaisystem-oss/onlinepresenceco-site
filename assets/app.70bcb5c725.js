@@ -1,4 +1,11 @@
 (function () {
+function fix(img) { var fb = img.getAttribute("data-fb"); img.removeAttribute("srcset"); if (fb) { img.src = fb; img.removeAttribute("data-fb"); } else img.style.display = "none"; }
+[].forEach.call(document.querySelectorAll("img[data-fb]"), function (img) {
+if (img.complete && img.naturalWidth === 0 && img.currentSrc) fix(img);
+img.addEventListener("error", function () { if (img.hasAttribute("data-fb")) fix(img); });
+});
+})();
+(function () {
 var D = document, H = D.documentElement;
 function $(s, r) { return (r || D).querySelector(s); }
 function $$(s, r) { return [].slice.call((r || D).querySelectorAll(s)); }
