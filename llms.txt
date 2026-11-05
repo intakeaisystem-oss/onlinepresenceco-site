@@ -11,12 +11,12 @@
 - Limits: no promises of orders, sales or rankings; not a freight forwarder, customs broker or law firm.
 
 ## Services
-- [English websites for U.S. buyers](https://onlinepresenceco.com/services/#websites): A fast, mobile-friendly company website written in clear American English: what you make, your capabilities, quality, certifications, MOQ and lead times, and a quote form that asks for the right details.
-- [SEO and GEO (AI search)](https://onlinepresenceco.com/services/#seo-geo): Help Google and AI assistants such as ChatGPT, Gemini, Perplexity and Google AI Overviews understand what you make, so you can show up when U.S. buyers search.
-- [AI tools for your business](https://onlinepresenceco.com/services/#ai-tools): Small AI tools that use your own catalog and documents to draft answers faster. AI can make mistakes, so a person on your side reviews and stays in control.
-- [U.S. shipping and pricing fixes](https://onlinepresenceco.com/services/#shipping-pricing): Show cost and delivery the way American buyers expect, so they can estimate the real price before they write.
-- [Mini workflows and automation](https://onlinepresenceco.com/services/#workflows): Small automations that stop inquiries from getting lost and cut manual copying and retyping.
-- [Store and checkout fixes](https://onlinepresenceco.com/services/#store-fixes): If you sell directly to U.S. customers on your own store, we fix what makes them leave before paying.
+- [English websites for U.S. buyers](https://onlinepresenceco.com/services/websites/): A fast, mobile-friendly company website written in clear American English: what you make, your capabilities, quality, certifications, MOQ and lead times, and a quote form that asks for the right details.
+- [SEO and GEO (AI search)](https://onlinepresenceco.com/services/seo-geo/): Help Google and AI assistants such as ChatGPT, Gemini, Perplexity and Google AI Overviews understand what you make, so you can show up when U.S. buyers search.
+- [AI tools for your business](https://onlinepresenceco.com/services/ai-tools/): Small AI tools that use your own catalog and documents to draft answers faster. AI can make mistakes, so a person on your side reviews and stays in control.
+- [U.S. shipping and pricing fixes](https://onlinepresenceco.com/services/shipping-pricing/): Show cost and delivery the way American buyers expect, so they can estimate the real price before they write.
+- [Mini workflows and automation](https://onlinepresenceco.com/services/workflows/): Small automations that stop inquiries from getting lost and cut manual copying and retyping.
+- [Store and checkout fixes](https://onlinepresenceco.com/services/store-fixes/): If you sell directly to U.S. customers on your own store, we fix what makes them leave before paying.
 
 ## Pages
 - [How it works](https://onlinepresenceco.com/how-it-works/)

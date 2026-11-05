@@ -215,3 +215,7 @@ b.addEventListener("pointermove", function (e) { var r = b.getBoundingClientRect
 b.addEventListener("pointerleave", function () { b.style.transform = ""; });
 });
 })();
+(function () {
+if (!window.Lenis || (window.matchMedia && (matchMedia("(prefers-reduced-motion: reduce)").matches || !matchMedia("(pointer:fine)").matches))) return;
+try { window.__lenis = new Lenis({ autoRaf: true, anchors: { offset: -84 }, lerp: 0.11 }); } catch (e) {}
+})();
