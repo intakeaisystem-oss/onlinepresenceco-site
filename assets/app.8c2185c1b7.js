@@ -145,3 +145,12 @@ else { done = false; fail(); }
 });
 }
 })();
+(function () {
+var card = document.querySelector("[data-pcard]"); if (!card) return;
+[].forEach.call(document.querySelectorAll("[data-pv]"), function (b) {
+b.addEventListener("click", function () {
+card.setAttribute("data-pcard", b.getAttribute("data-pv"));
+[].forEach.call(document.querySelectorAll("[data-pv]"), function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+});
+});
+})();
