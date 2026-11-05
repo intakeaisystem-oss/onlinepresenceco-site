@@ -4,11 +4,10 @@
 
 ## Key facts
 - Business: Online Presence Co., Illinois, USA. Email: info@onlinepresenceco.com. Phone: +1 (630) 765-0559.
-- Who it serves: manufacturers, factories, exporters, wholesalers, distributors and brands outside the U.S. (for example China, Canada, Mexico, Vietnam, India, Korea, Europe) that sell to American buyers.
-- Languages: the site is in English, Simplified Chinese, Traditional Chinese, Spanish, French, Vietnamese and Korean.
-- Pricing: no price list; every job is quoted in writing after a short conversation.
-- Ownership: the client's domain is in the client's name; content is the client's; site files are handed over once the build is paid.
-- Limits: no promises of orders, sales or rankings; not a freight forwarder, customs broker or law firm.
+- Serves manufacturers, factories, exporters, wholesalers, distributors and brands outside the U.S. that sell to American buyers.
+- Site languages: English, Simplified Chinese, Traditional Chinese, Spanish, French, Vietnamese, Korean.
+- No price list: every job is quoted in writing after a short conversation. No promises of orders, sales or rankings.
+- Not a freight forwarder, customs broker or law firm.
 
 ## Services
 - [English websites for U.S. buyers](https://onlinepresenceco.com/services/websites/): A fast, mobile-friendly company website written in clear American English: what you make, your capabilities, quality, certifications, MOQ and lead times, and a quote form that asks for the right details.
@@ -18,16 +17,20 @@
 - [Mini workflows and automation](https://onlinepresenceco.com/services/workflows/): Small automations that stop inquiries from getting lost and cut manual copying and retyping.
 - [Store and checkout fixes](https://onlinepresenceco.com/services/store-fixes/): If you sell directly to U.S. customers on your own store, we fix what makes them leave before paying.
 
+## Languages
+- English: https://onlinepresenceco.com/
+- 简体中文: https://onlinepresenceco.com/zh/
+- 繁體中文: https://onlinepresenceco.com/zh-hant/
+- Español: https://onlinepresenceco.com/es/
+- Français: https://onlinepresenceco.com/fr/
+- Tiếng Việt: https://onlinepresenceco.com/vi/
+- 한국어: https://onlinepresenceco.com/ko/
+
+## What is GEO?
+GEO (generative engine optimization) means making a supplier's pages clear and factual enough that AI assistants like ChatGPT, Gemini and Perplexity can understand and cite them when U.S. buyers ask for suppliers.
+
 ## Pages
 - [How it works](https://onlinepresenceco.com/how-it-works/)
 - [FAQ](https://onlinepresenceco.com/faq/)
 - [Contact / free gap check](https://onlinepresenceco.com/contact/)
 - [Sample supplier site (made-up company)](https://onlinepresenceco.com/samples/supplier/)
-
-## Other languages
-- [简体中文](https://onlinepresenceco.com/zh/)
-- [繁體中文](https://onlinepresenceco.com/zh-hant/)
-- [Español](https://onlinepresenceco.com/es/)
-- [Français](https://onlinepresenceco.com/fr/)
-- [Tiếng Việt](https://onlinepresenceco.com/vi/)
-- [한국어](https://onlinepresenceco.com/ko/)
