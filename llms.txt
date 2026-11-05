@@ -1,45 +1,34 @@
 # Online Presence Co.
 
-> Online Presence Co. builds websites, sets up and looks after Google Business Profiles, and does local SEO, AI search setup, Visitor Insights and hosting + care for local businesses. It also builds English websites for manufacturers and exporters that sell to U.S. buyers. It is owned and run by Nathan, who works construction in McHenry County, Illinois. In person around Crystal Lake, McHenry County and the Chicago suburbs. Online, for businesses anywhere in the US. Phone: (630) 765-0559.
+> Online Presence Co. builds English websites, AI tools and small business fixes for manufacturers, factories, exporters and suppliers that sell to the United States. Based in Illinois, USA.
 
 ## Key facts
-- Business name: Online Presence Co.
-- Owner: Nathan. Clients deal with him directly, before and after they pay.
-- Based in: Crystal Lake, Illinois. A service-area business; no street address is published.
-- Who it works with: manufacturers, exporters and distributors that sell to U.S. buyers (English websites), and any local business, including contractors and trades, home services, restaurants and cafes, salons and barbers, auto shops and retail shops.
-- Where: In person around Crystal Lake, McHenry County and the Chicago suburbs. Online, for businesses anywhere in the US.
-- Contact: phone (630) 765-0559, or the forms at https://onlinepresenceco.com. Calls and email only. We don't text.
-- Pricing: no packages and no price list online. Every business is different. Nathan gives you a straight quote after a short call.
-- Ownership: Your domain is in your name from day one, and the site is yours once the setup is paid.
-- Promises: We never promise rankings. Nobody honestly can. We report what the AI tools say. We never promise placement.
-- Track record: a new business. Clients would be among Nathan's first, so there are no reviews yet.
-
-How quoting works: a free audit checks a business's website for its call button, quote form, speed, basic SEO and whether AI search tools can read it. Nathan also checks some things by hand. On a short call he keeps the fixes that matter to the owner and gives one price, with the scope in writing before anything is paid.
+- Business: Online Presence Co., Illinois, USA. Email: info@onlinepresenceco.com. Phone: +1 (630) 765-0559.
+- Who it serves: manufacturers, factories, exporters, wholesalers, distributors and brands outside the U.S. (for example China, Canada, Mexico, Vietnam, India, Korea, Europe) that sell to American buyers.
+- Languages: the site is in English, Simplified Chinese, Traditional Chinese, Spanish, French, Vietnamese and Korean.
+- Pricing: no price list; every job is quoted in writing after a short conversation.
+- Ownership: the client's domain is in the client's name; content is the client's; site files are handed over once the build is paid.
+- Limits: no promises of orders, sales or rankings; not a freight forwarder, customs broker or law firm.
 
 ## Services
-- [All services](https://onlinepresenceco.com/services/): every service on one page
-- [Websites for manufacturers](https://onlinepresenceco.com/services/export-websites/): English websites for manufacturers and exporters that sell to U.S. buyers, with product and spec pages and a quote form that reaches them
-- [Websites](https://onlinepresenceco.com/services/websites/): new builds and rebuilds, made for phones, built from real photos and facts, with tap-to-call and a quote form that reaches the owner
-- [Local SEO and Google Business Profile](https://onlinepresenceco.com/services/local-seo/): Google Business Profile setup and upkeep, service and service-area pages, citations and name/address/phone consistency, schema, review requests to every customer
-- [AI search setup (GEO)](https://onlinepresenceco.com/services/ai-search-geo/): structured data, consistent business details, answer-style content, llms.txt, AI search crawler access, monthly AI-answer checks
-- [Visitor Insights](https://onlinepresenceco.com/services/visitor-insights/): analytics monitoring that finds where visitors leave and why, with a monthly Leak Report
-- [Hosting and care](https://onlinepresenceco.com/services/hosting-care/): hosting, SSL, backups, updates, uptime checks, small edits and a monthly report
-- [Crystal Lake and McHenry County](https://onlinepresenceco.com/crystal-lake-web-design/): websites and Google listings for local businesses in the area
+- [English websites for U.S. buyers](https://onlinepresenceco.com/services/#websites): A fast, mobile-friendly company website written in clear American English: what you make, your capabilities, quality, certifications, MOQ and lead times, and a quote form that asks for the right details.
+- [SEO and GEO (AI search)](https://onlinepresenceco.com/services/#seo-geo): Help Google and AI assistants such as ChatGPT, Gemini, Perplexity and Google AI Overviews understand what you make, so you can show up when U.S. buyers search.
+- [AI tools for your business](https://onlinepresenceco.com/services/#ai-tools): Small AI tools that use your own catalog and documents to draft answers faster. AI can make mistakes, so a person on your side reviews and stays in control.
+- [U.S. shipping and pricing fixes](https://onlinepresenceco.com/services/#shipping-pricing): Show cost and delivery the way American buyers expect, so they can estimate the real price before they write.
+- [Mini workflows and automation](https://onlinepresenceco.com/services/#workflows): Small automations that stop inquiries from getting lost and cut manual copying and retyping.
+- [Store and checkout fixes](https://onlinepresenceco.com/services/#store-fixes): If you sell directly to U.S. customers on your own store, we fix what makes them leave before paying.
 
-## Quotes and audits
-- [How we quote](https://onlinepresenceco.com/how-we-quote/): audit, findings, custom plan, straight quote
-- [Sample audit](https://onlinepresenceco.com/sample-audit/): a full sample report for a fictional business
-- [Free website audit](https://onlinepresenceco.com/audit/): request form
-- [Missed call calculator](https://onlinepresenceco.com/calculator/): free tool; an owner enters missed customers a week, close rate and average job to see what those customers add up to in a year (runs in the browser, nothing sent)
-- [No website yet](https://onlinepresenceco.com/get-started/): call-back form
-
-## Guides
-- [How local businesses show up in AI search answers](https://onlinepresenceco.com/guides/show-up-in-ai-search/)
-- [Google Business Profile checklist for service businesses](https://onlinepresenceco.com/guides/google-business-profile-checklist/)
-- [Whose name is on your domain?](https://onlinepresenceco.com/your-domain/): how to check who a web address is registered to
-
-## Optional
-- [Who we help](https://onlinepresenceco.com/who-we-help/)
-- [About Nathan](https://onlinepresenceco.com/about/)
+## Pages
+- [Free tools: shipping weight calculator and export gap check](https://onlinepresenceco.com/tools/)
+- [How it works](https://onlinepresenceco.com/how-it-works/)
 - [FAQ](https://onlinepresenceco.com/faq/)
-- [Privacy Notice](https://onlinepresenceco.com/privacy/)
+- [Contact / free gap check](https://onlinepresenceco.com/contact/)
+- [Sample supplier site (made-up company)](https://onlinepresenceco.com/samples/supplier/)
+
+## Other languages
+- [简体中文](https://onlinepresenceco.com/zh/)
+- [繁體中文](https://onlinepresenceco.com/zh-hant/)
+- [Español](https://onlinepresenceco.com/es/)
+- [Français](https://onlinepresenceco.com/fr/)
+- [Tiếng Việt](https://onlinepresenceco.com/vi/)
+- [한국어](https://onlinepresenceco.com/ko/)
