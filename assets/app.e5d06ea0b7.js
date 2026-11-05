@@ -161,3 +161,57 @@ card.setAttribute("data-pcard", b.getAttribute("data-pv"));
 });
 });
 })();
+(function () {
+var D = document, W = window, RM = W.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+var bar = D.createElement("div"); bar.className = "g-progress"; D.body.appendChild(bar);
+var h1 = D.querySelector("[data-words]");
+if (h1 && !RM) {
+var txt = h1.textContent, parts, cjk = /[぀-ヿ㐀-鿿가-힯]/.test(txt) && !/\s/.test(txt.trim());
+if (W.Intl && Intl.Segmenter && cjk) { parts = [].map.call(Array.from(new Intl.Segmenter(D.documentElement.lang, { granularity: "word" }).segment(txt)), function (x) { return x.segment; }); }
+else parts = txt.split(/(\s+)/);
+h1.setAttribute("aria-label", txt); h1.textContent = "";
+var i = 0;
+parts.forEach(function (p) {
+if (/^\s+$/.test(p)) { h1.appendChild(D.createTextNode(p)); return; }
+var s = D.createElement("span"); s.className = "g-w"; s.setAttribute("aria-hidden", "true"); s.style.setProperty("--i", i++); s.textContent = p; h1.appendChild(s);
+});
+}
+var vis = D.querySelector("[data-parallax]");
+if (vis && !RM && W.matchMedia("(pointer:fine)").matches) {
+var photo = vis.querySelector(".g-hero-photo"), fl = [].slice.call(vis.querySelectorAll("[data-depth]"));
+vis.closest("section").addEventListener("pointermove", function (e) {
+var r = vis.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+if (photo) { photo.style.setProperty("--px", (x * -10) + "px"); photo.style.setProperty("--py", (y * -10) + "px"); }
+fl.forEach(function (f) { var d = +f.getAttribute("data-depth"); f.style.setProperty("--fx", (x * d) + "px"); f.style.setProperty("--fy", (y * d) + "px"); });
+});
+}
+D.addEventListener("pointermove", function (e) {
+var c = e.target.closest && e.target.closest(".g-spot"); if (!c) return;
+var r = c.getBoundingClientRect(); c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+});
+var path = D.querySelector(".g-path"), pli = path ? [].slice.call(path.children) : [];
+var steps = [].slice.call(D.querySelectorAll("[data-steps] li"));
+var tick = false;
+function onScroll() {
+tick = false;
+var st = W.scrollY, h = D.documentElement.scrollHeight - W.innerHeight;
+bar.style.setProperty("--sp", h > 0 ? Math.min(1, st / h) : 0);
+D.documentElement.classList.toggle("g-scrolled", st > 20);
+if (path) {
+var r = path.getBoundingClientRect(), vh = W.innerHeight, p = Math.max(0, Math.min(1, (vh * .85 - r.top) / (r.height + vh * .35)));
+path.style.setProperty("--pp", p.toFixed(3));
+pli.forEach(function (li, k) { li.classList.toggle("on", p >= (k + .5) / pli.length || RM); });
+}
+if (steps.length) {
+var mid = W.innerHeight * .55, best = 0;
+steps.forEach(function (li, k) { if (li.getBoundingClientRect().top < mid) best = k; });
+steps.forEach(function (li, k) { li.classList.toggle("on", k <= best); });
+}
+}
+W.addEventListener("scroll", function () { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, { passive: true });
+onScroll();
+if (!RM && W.matchMedia("(pointer:fine)").matches) [].forEach.call(D.querySelectorAll("[data-magnet]"), function (b) {
+b.addEventListener("pointermove", function (e) { var r = b.getBoundingClientRect(); b.style.transform = "translate(" + ((e.clientX - r.left - r.width / 2) * .15) + "px," + ((e.clientY - r.top - r.height / 2) * .25) + "px)"; });
+b.addEventListener("pointerleave", function () { b.style.transform = ""; });
+});
+})();
