@@ -124,3 +124,4 @@ a.opc-card{display:block;text-decoration:none}
 .opc-note p{margin:6px 0 0;color:var(--opc-mute);line-height:1.5}
 .opc-num{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--opc-grad);color:#fff;font-weight:800;margin-bottom:12px}
 .opc-sec-sea .opc-split{align-items:center}
+.opc-mfr #choose,.opc-mfr .opc-hero .opc-hero-pill{display:none}
