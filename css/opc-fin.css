@@ -1,11 +1,10 @@
 /* Online Presence Co. — clean theme (2026-11-16).
-   White page, black type, one deep navy. Geist (SIL Open Font License) at regular weight with tight tracking.
+   White page, black type, one deep navy. Hanken Grotesk (SIL Open Font License).
    Loaded after opc-home.css and opc-local.css on every /local/ page, so it restyles the shared header,
    footer and inner-page components, and defines the fin-* blocks used by the home page. */
-@font-face{font-family:"Geist";src:url(/fonts/geist-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 :root,.dark{
   --fin-ink:#0b0b0c;--fin-body:#3d4148;--fin-mute:#6b7280;--fin-line:#e6e8ec;--fin-mist:#f5f7fa;--fin-navy:#113359;--fin-navy-2:#0d2744;--fin-night:#000;--fin-blue:#1f5fd1;
-  --fin-font:"Geist","Helvetica Neue",Arial,system-ui,sans-serif;
+  --fin-font:"Hanken Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
   --aw-font-sans:var(--fin-font);--aw-font-heading:var(--fin-font);--aw-font-serif:var(--fin-font);
   --aw-color-primary:#113359;--aw-color-secondary:#0d2744;--aw-color-accent:#113359;--aw-color-link:#1f5fd1;
   --aw-color-text-heading:#0b0b0c;--aw-color-text-default:#3d4148;--aw-color-text-muted:#6b7280;--aw-color-bg-page:#fff;
@@ -259,3 +258,128 @@ footer .font-bold,footer .font-medium{font-weight:500!important;color:var(--fin-
 .fin-tabl p{font-size:1.2rem;line-height:1.4;color:#fff;margin:0;max-width:34ch;letter-spacing:-.02em}
 .fin-tabimg{border-radius:16px;overflow:hidden;aspect-ratio:3/2;background:#0d2744}
 .fin-tabimg img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ===== v3 (2026-11-16c): Hanken Grotesk, firmer headings, squarer corners, 7-section home ===== */
+@font-face{font-family:"Hanken Grotesk";src:url(/fonts/hanken-grotesk-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+body{letter-spacing:0;font-size:1.0625rem}
+h1,h2,.fin-h1,.fin-h2,.opc-h2,.opc-ph h1{font-weight:600!important;letter-spacing:-.035em!important}
+h3,h4,.fin-h3,.opc-card h3,.fin-list h3{font-weight:600!important;letter-spacing:-.02em}
+.fin-h1{font-size:clamp(2.55rem,8.4vw,4.3rem);line-height:1.02}
+.fin-h2{font-size:clamp(2rem,5.6vw,3.3rem);line-height:1.06}
+.fin-h3{font-size:clamp(1.35rem,3vw,1.75rem);line-height:1.2;color:#fff;max-width:30ch}
+.fin-lede{font-size:1.15rem;line-height:1.55;max-width:52ch}
+.fin-head{max-width:760px}
+
+/* header */
+#header{background:#fffffff0!important;backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px)}
+#header>div.relative{padding-top:14px;padding-bottom:14px}
+#header a>.text-heading{font-weight:600!important;font-size:1.15rem;letter-spacing:-.025em}
+#header nav a,#header nav button{font-weight:500!important;font-size:.95rem;color:#3d4148!important;letter-spacing:0}
+#header nav a:hover,#header nav button:hover{color:var(--fin-ink)!important}
+#header .dropdown-menu{border-radius:10px!important;padding:6px!important}
+#header .dropdown-menu a{border-radius:6px!important}
+#header nav.hidden + div a.btn-primary,#header a.btn-primary{background:var(--fin-navy)!important;border-radius:9px!important;font-weight:500!important;padding:10px 18px!important}
+#header a.btn-primary:hover{background:var(--fin-navy-2)!important}
+#header a.fin-tel{display:inline-flex;align-items:center;font-weight:500;font-size:.95rem;white-space:nowrap;padding:0 4px;text-decoration:none;font-variant-numeric:tabular-nums}
+#header a.fin-tel:hover{text-decoration:underline}
+#header a.fin-call{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;margin-right:4px;border:1px solid #cfd3da;border-radius:9px;font-weight:500;font-size:.93rem;text-decoration:none}
+.fin-bar{font-size:.88rem;padding:8px 16px;background:var(--fin-navy-2)}
+
+/* buttons and corners */
+.fin-btn,.opc-btn-sun,.fin-btn-o,.opc-btn-ghost{border-radius:10px!important;font-weight:500!important;min-height:50px}
+.fin-panel,.fin-cta{border-radius:16px}
+.fin-lap{border-radius:12px;border-width:2px}
+.fin-q,.fin-r{border-radius:8px}
+.fin-ph{border-radius:20px;border-width:2px}
+.fin-tabs button{border-radius:8px;font-weight:500}
+.fin-tabimg{border-radius:10px}
+.opc-card{border-radius:12px!important}
+.fin-photo{border-radius:12px}
+.fin-r b,.fin-ph b{font-weight:600}
+
+/* hero */
+.fin-hero{padding:52px 0 30px}
+.fin-facts{list-style:none;margin:30px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:.95rem;color:#4b515b}
+.fin-facts li{position:relative;padding-left:22px}
+.fin-facts li:before{content:"";position:absolute;left:1px;top:.42em;width:11px;height:6px;border-left:2px solid var(--fin-navy);border-bottom:2px solid var(--fin-navy);transform:rotate(-45deg)}
+@media(min-width:980px){.fin-hero{padding:88px 0 52px}}
+
+/* business photo row: four, not a wall */
+.fin-biz{margin-top:30px}
+.fin-biz figure{border-radius:10px;aspect-ratio:4/5}
+.fin-biz figcaption{font-weight:500;font-size:1rem}
+@media(min-width:760px){.fin-biz figure{aspect-ratio:4/3}}
+
+/* the problem */
+.fin-probs{list-style:none;margin:52px auto 0;padding:0;text-align:left;border-top:1px solid #26282d;max-width:980px}
+.fin-probs li{display:grid;gap:6px;padding:22px 0;border-bottom:1px solid #26282d}
+.fin-probs b{color:#fff;font-weight:600;font-size:1.22rem;letter-spacing:-.02em}
+.fin-probs span{color:#a9adb6;line-height:1.5}
+@media(min-width:760px){.fin-probs li{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:44px;padding:26px 0;align-items:baseline}}
+
+/* the solution: four stages on one line */
+.fin-flow{list-style:none;margin:48px 0 56px;padding:0;display:grid}
+.fin-flow li{position:relative;padding:0 0 30px 28px;border-left:1px solid #cfd3da}
+.fin-flow li:last-child{padding-bottom:0}
+.fin-flow li:before{content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--fin-navy)}
+.fin-flow b{display:block;font-size:1.35rem;font-weight:600;color:var(--fin-ink);letter-spacing:-.025em}
+.fin-flow p{margin:6px 0 12px;line-height:1.5}
+.fin-flow a{display:block;color:var(--fin-navy);text-decoration:none;padding:4px 0;font-weight:500}
+.fin-flow a:hover{text-decoration:underline}
+@media(min-width:900px){.fin-flow{grid-template-columns:repeat(4,1fr)}.fin-flow li,.fin-flow li:last-child{border-left:0;border-top:1px solid #cfd3da;padding:26px 28px 0 0}.fin-flow li:before{left:0;top:-5px}}
+
+/* three steps */
+.fin-steps3{list-style:none;margin:44px 0 0;padding:0;display:grid;counter-reset:s}
+.fin-steps3 li{counter-increment:s;padding:24px 0;border-top:1px solid #d5d9e0}
+.fin-steps3 li:before{content:"0" counter(s);display:block;font-size:.95rem;font-weight:600;color:var(--fin-navy);margin-bottom:12px;font-variant-numeric:tabular-nums}
+.fin-steps3 b{display:block;font-size:1.7rem;font-weight:600;letter-spacing:-.03em;color:var(--fin-ink);margin-bottom:8px}
+.fin-steps3 span{display:block;line-height:1.55;max-width:38ch}
+@media(min-width:860px){.fin-steps3{grid-template-columns:repeat(3,1fr);gap:44px}.fin-steps3 li{padding:28px 0 8px}}
+
+/* capabilities: rows, not cards */
+.fin-caps{list-style:none;margin:44px 0 0;padding:0;border-top:1px solid var(--fin-line)}
+.fin-caps>li{border-bottom:1px solid var(--fin-line)}
+.fin-caps a{display:grid;gap:12px;padding:26px 0;text-decoration:none;color:inherit}
+.fin-caps h3{margin:0;font-size:1.4rem;color:var(--fin-ink);display:flex;align-items:flex-start;gap:12px;line-height:1.2}
+.fin-caps h3 svg{width:22px;height:22px;margin-top:3px;flex:none;stroke:var(--fin-navy);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.fin-caps p{margin:0;line-height:1.5;max-width:54ch}
+.fin-caps ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.fin-caps ul li{border:1px solid var(--fin-line);border-radius:6px;padding:4px 10px;font-size:.88rem;color:#3d4148}
+.fin-caps i{font-style:normal;color:var(--fin-navy);font-weight:500;font-size:.97rem;white-space:nowrap}
+.fin-caps a:hover h3{color:var(--fin-navy)}
+.fin-caps a:hover i{text-decoration:underline}
+@media(min-width:900px){.fin-caps a{grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr) auto;gap:44px;padding:30px 0;align-items:start}}
+
+/* why us */
+.fin-why{display:grid;gap:40px}
+.fin-points{list-style:none;margin:36px 0 0;padding:0;border-top:1px solid #d5d9e0}
+.fin-points li{padding:20px 0;border-bottom:1px solid #d5d9e0}
+.fin-points b{display:block;color:var(--fin-ink);font-weight:600;font-size:1.15rem;letter-spacing:-.015em;margin-bottom:4px}
+.fin-points span{line-height:1.5;display:block;max-width:56ch}
+.fin-card{border:1px solid #d5d9e0;border-radius:14px;padding:28px 24px;background:#fff;align-self:start}
+.fin-card h3{margin:0;font-size:1.25rem}
+.fin-card dl{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr}
+.fin-card dt,.fin-card dd{padding:12px 0;border-top:1px solid var(--fin-line);margin:0}
+.fin-card dt{color:var(--fin-mute);padding-right:18px;font-size:.95rem}
+.fin-card dd{color:var(--fin-ink);font-weight:500;text-align:right;overflow-wrap:anywhere}
+.fin-card dd a{color:inherit;text-decoration:none}
+.fin-card dd a:hover{text-decoration:underline}
+.fin-card .fin-btn{width:100%}
+@media(min-width:980px){.fin-why{grid-template-columns:1.15fr .85fr;gap:72px}.fin-card{position:sticky;top:110px;padding:32px 30px}}
+
+.fin-faq summary{font-weight:500}
+.fin-checks b,.fin-tabp li b{font-weight:600}
+
+/* footer */
+.fin-fbrand{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:1.15rem;letter-spacing:-.025em;color:var(--fin-ink)!important;text-decoration:none}
+.fin-fbrand svg{width:28px;height:28px}
+.fin-fnote{margin:0 0 12px;max-width:32ch;font-size:.95rem;line-height:1.5;color:var(--fin-body)}
+footer .font-medium{font-weight:600!important}
+/* v3 fixes */
+#header nav.hidden + div a.fin-tel,#header a.fin-tel{background:transparent!important;color:var(--fin-ink)!important;padding:0 6px!important;border-radius:0!important}
+.fin-h1{font-size:clamp(2.55rem,8.4vw,3.85rem)}
+@media(min-width:980px){.fin-hero-in{grid-template-columns:1.2fr .8fr;gap:48px}}
+footer .intersect-once{opacity:1!important;animation:none!important}
+.fin-card dd{font-size:.97rem}
+.fin-card dd a[href^="mailto"]{white-space:nowrap;font-size:.92rem}
+@media(max-width:760px){.opc-chat-teaser{display:none!important}}
