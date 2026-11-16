@@ -383,3 +383,71 @@ footer .intersect-once{opacity:1!important;animation:none!important}
 .fin-card dd{font-size:.97rem}
 .fin-card dd a[href^="mailto"]{white-space:nowrap;font-size:.92rem}
 @media(max-width:760px){.opc-chat-teaser{display:none!important}}
+
+/* ===== v4 (2026-11-16d): hero demo with three surfaces, booking page, forms, phone ===== */
+.fin-vis{padding-bottom:0;max-width:500px}
+.fin-lap{padding:12px}
+.fin-seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--fin-mist);border-radius:8px;padding:4px;margin-bottom:12px}
+.fin-seg span{text-align:center;font-size:.86rem;font-weight:500;color:var(--fin-mute);padding:8px 4px;border-radius:6px;cursor:pointer;transition:background-color .2s,color .2s}
+.fin-seg span.on{background:#fff;color:var(--fin-ink);box-shadow:0 1px 2px #0b0b0c1f}
+.fin-pane{display:none;min-height:258px;flex-direction:column;gap:10px}
+.fin-pane.on{display:flex;animation:finfade .35s ease}
+@keyframes finfade{from{opacity:0}to{opacity:1}}
+.fin-pane .fin-res{margin-top:0}
+.fin-q.ask{background:var(--fin-mist);border-color:var(--fin-mist);align-self:flex-end;max-width:88%}
+.fin-map{position:relative;height:132px;border-radius:8px;overflow:hidden;background:
+ linear-gradient(118deg,transparent 46%,#fff 46%,#fff 49%,transparent 49%),
+ linear-gradient(8deg,transparent 58%,#fff 58%,#fff 61%,transparent 61%),
+ linear-gradient(90deg,transparent 22%,#fff 22%,#fff 24%,transparent 24%),
+ linear-gradient(0deg,transparent 28%,#fff 28%,#fff 31%,transparent 31%),#e4e9f0}
+.fin-map i{position:absolute;width:10px;height:10px;border-radius:50%;background:#9aa3b2;border:2px solid #fff}
+.fin-map .p1{left:16%;top:22%}.fin-map .p2{left:76%;top:66%}.fin-map .p3{left:84%;top:20%}
+.fin-pin{position:absolute;left:44%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:6px;background:var(--fin-navy);color:#fff;border-radius:6px;padding:5px 9px;font-size:.78rem;white-space:nowrap;box-shadow:0 6px 16px -6px #113359}
+.fin-pin b{font-weight:600}
+.fin-pin:before{content:"";width:7px;height:7px;border-radius:50%;background:#fff}
+.fin-acts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:auto}
+.fin-acts span{text-align:center;border-radius:8px;padding:9px 0;font-size:.84rem;font-weight:500;background:#eef0f3;color:var(--fin-ink)}
+.fin-acts span.a{background:var(--fin-navy);color:#fff}
+.fin-ai{border:1px solid var(--fin-line);border-radius:8px;padding:13px 14px}
+.fin-ai p{margin:0;font-size:.93rem;line-height:1.5;color:var(--fin-body)}
+.fin-ai p b{color:var(--fin-ink);font-weight:600}
+.fin-ai div{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.fin-ai div span{font-size:.74rem;border:1px solid var(--fin-line);border-radius:5px;padding:3px 7px;color:var(--fin-mute)}
+.fin-cap{margin:10px 0 0;font-size:.8rem;color:var(--fin-mute);text-align:center}
+.fin-cta-note{margin:18px 0 0;font-size:.93rem;color:#b9c8da}
+@media(prefers-reduced-motion:reduce){.fin-pane.on{animation:none}}
+
+/* booking page */
+.fin-book .fin-steps3{margin-top:0}
+.fin-cal{margin-top:36px;border:1px solid var(--fin-line);border-radius:14px;overflow:hidden;background:#fff}
+.fin-cal iframe{display:block;border:0;width:100%;height:760px}
+@media(max-width:760px){.fin-cal iframe{height:1150px!important}.fin-cal{margin-left:-10px;margin-right:-10px}}
+.fin-book .fin-facts{margin-top:18px}
+.fin-book-alt{margin-top:40px;padding-top:28px;border-top:1px solid var(--fin-line)}
+.fin-book-alt p{margin:0;font-size:1.25rem;font-weight:600;color:var(--fin-ink);letter-spacing:-.02em}
+.fin-book-alt .fin-row{margin-top:14px}
+
+/* contact form */
+form[data-form]{border-radius:14px!important;box-shadow:none!important;border-color:var(--fin-line)!important}
+form[data-form] label,form[data-form] legend{font-weight:500!important}
+form[data-form] input:not([type=checkbox]),form[data-form] textarea{border-radius:8px!important;box-shadow:none!important;border-color:#cfd3da!important;font-size:16px!important;font-weight:400}
+form[data-form] input:not([type=checkbox]):focus,form[data-form] textarea:focus{border-color:var(--fin-navy)!important;outline:2px solid #11335933;outline-offset:0}
+form[data-form] fieldset label{border-radius:8px!important;min-height:44px}
+form[data-form] .btn-primary,[data-fail] .btn-primary{background:var(--fin-navy)!important;color:#fff!important;border:0!important;border-radius:10px!important;min-height:54px;font-weight:500!important;font-size:1.05rem!important;box-shadow:none!important}
+.fin-formnote{margin:-6px 0 0;text-align:center;font-size:.9rem;color:var(--fin-mute)}
+
+/* phone */
+@media(max-width:560px){
+  .fin-hero .fin-row .fin-btn,.fin-hero .fin-row .fin-btn-o,.fin-cta .fin-row>a,.fin-book-alt .fin-row>a{flex:1 1 100%}
+  .fin-facts{flex-direction:column;gap:8px}
+  .fin-tabs{flex-wrap:nowrap;overflow-x:auto;margin-left:-22px;margin-right:-22px;padding:0 22px 4px;scrollbar-width:none;scroll-snap-type:x proximity}
+  .fin-tabs::-webkit-scrollbar{display:none}
+  .fin-tabs button{flex:none;scroll-snap-align:start}
+  .fin-sec{padding:60px 0}
+  .fin-card dl{grid-template-columns:1fr}
+  .fin-card dt{border-top:1px solid var(--fin-line);padding:12px 0 0}
+  .fin-card dd{border-top:0;text-align:left;padding:2px 0 12px}
+}
+a,button,summary{-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+.fin-q.ask{max-width:100%;border-radius:10px}.fin-q.ask span{white-space:normal;line-height:1.35}
