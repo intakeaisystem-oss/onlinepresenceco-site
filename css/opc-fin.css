@@ -1,10 +1,10 @@
 /* Online Presence Co. — clean theme (2026-11-16).
-   White page, black type, one deep navy. Hanken Grotesk (SIL Open Font License).
+   White page, black type, one deep navy. Inter Tight for headings, Inter for text (SIL Open Font License).
    Loaded after opc-home.css and opc-local.css on every /local/ page, so it restyles the shared header,
    footer and inner-page components, and defines the fin-* blocks used by the home page. */
 :root,.dark{
   --fin-ink:#0b0b0c;--fin-body:#3d4148;--fin-mute:#6b7280;--fin-line:#e6e8ec;--fin-mist:#f5f7fa;--fin-navy:#113359;--fin-navy-2:#0d2744;--fin-night:#000;--fin-blue:#1f5fd1;
-  --fin-font:"Hanken Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
+  --fin-font:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
   --aw-font-sans:var(--fin-font);--aw-font-heading:var(--fin-font);--aw-font-serif:var(--fin-font);
   --aw-color-primary:#113359;--aw-color-secondary:#0d2744;--aw-color-accent:#113359;--aw-color-link:#1f5fd1;
   --aw-color-text-heading:#0b0b0c;--aw-color-text-default:#3d4148;--aw-color-text-muted:#6b7280;--aw-color-bg-page:#fff;
@@ -260,7 +260,7 @@ footer .font-bold,footer .font-medium{font-weight:500!important;color:var(--fin-
 .fin-tabimg img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ===== v3 (2026-11-16c): Hanken Grotesk, firmer headings, squarer corners, 7-section home ===== */
-@font-face{font-family:"Hanken Grotesk";src:url(/fonts/hanken-grotesk-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
 body{letter-spacing:0;font-size:1.0625rem}
 h1,h2,.fin-h1,.fin-h2,.opc-h2,.opc-ph h1{font-weight:600!important;letter-spacing:-.035em!important}
 h3,h4,.fin-h3,.opc-card h3,.fin-list h3{font-weight:600!important;letter-spacing:-.02em}
@@ -549,3 +549,30 @@ i.t svg{width:12px;height:12px;fill:none;stroke:var(--fin-navy);stroke-width:2;s
 .fin-proof dt{font-size:clamp(1.6rem,4.8vw,2.4rem);font-weight:600;letter-spacing:-.04em;color:var(--fin-ink);line-height:1.05}
 .fin-proof dd{margin:8px 0 0;font-size:.93rem;line-height:1.4;color:var(--fin-body);max-width:24ch}
 @media(min-width:860px){.fin-proof dl{grid-template-columns:repeat(4,1fr)}.fin-proof dl>div{padding:28px 24px}.fin-proof dl>div:first-child{padding-left:0}.fin-proof dl>div+div{border-left:1px solid var(--fin-line);padding-left:24px}.fin-proof dl>div:nth-child(n+3){border-top:0}}
+
+/* ===== v6 (2026-11-16f): Inter Tight headings + Inter text, calmer hierarchy ===== */
+@font-face{font-family:"Inter";src:url(/fonts/inter-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter Tight";src:url(/fonts/inter-tight-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+:root,.dark{--fin-head:"Inter Tight","Inter","Helvetica Neue",Arial,system-ui,sans-serif;--aw-font-heading:var(--fin-head)}
+body{font-size:1rem;line-height:1.6;letter-spacing:-.006em;font-feature-settings:"cv11","ss01";color:#41464f}
+h1,h2,h3,h4,.font-heading,.fin-h1,.fin-h2,.fin-h3,.opc-h2,.opc-ph h1,.fin-proof dt,.fin-steps3 b,.fin-sys>li>b,.fin-acc b,.fin-fbrand,#header a>.text-heading{font-family:var(--fin-head)!important}
+h1,.fin-h1,.opc-ph h1{font-weight:500!important;letter-spacing:-.045em!important}
+h2,.fin-h2,.opc-h2{font-weight:500!important;letter-spacing:-.04em!important}
+.fin-h1{font-size:clamp(2.45rem,7.4vw,4rem);line-height:1.02}
+.fin-h2{font-size:clamp(1.95rem,5vw,3.05rem);line-height:1.06}
+h3,h4,.fin-h3,.opc-card h3{font-weight:600!important;letter-spacing:-.025em}
+.fin-lede{font-size:1.125rem;line-height:1.6;color:#4b515b;letter-spacing:-.01em}
+.fin-proof dt{font-weight:500;letter-spacing:-.045em}
+.fin-steps3 b,.fin-sys>li>b{font-weight:500;letter-spacing:-.035em}
+.fin-acc b{font-weight:500;letter-spacing:-.03em}
+.fin-caps h3,.fin-points b,.fin-audl b,.fin-probs b,.fin-flow b,.fin-card h3,.fin-book-alt p{font-family:var(--fin-head);letter-spacing:-.02em}
+#header nav a,#header nav button{font-size:.93rem;letter-spacing:-.005em}
+.fin-btn,.opc-btn-sun,.fin-btn-o,.opc-btn-ghost,#header a.btn-primary{letter-spacing:-.01em;font-size:.97rem}
+.fin-bar{font-size:.84rem;letter-spacing:-.003em}
+.fin-facts,.fin-cap,.fin-proof dd,footer{letter-spacing:-.003em}
+h1,.fin-h1,.opc-ph h1{letter-spacing:-.022em!important}
+h2,.fin-h2,.opc-h2{letter-spacing:-.02em!important}
+.fin-proof dt,.fin-steps3 b,.fin-sys>li>b,.fin-acc b{letter-spacing:-.02em}
+.fin-caps h3,.fin-points b,.fin-audl b,.fin-probs b,.fin-flow b,.fin-card h3,.fin-book-alt p,h3,h4{letter-spacing:-.01em!important}
+#header a>.text-heading,.fin-fbrand{letter-spacing:-.015em!important}
+.fin-proof dt{font-size:clamp(1.5rem,4.4vw,2.05rem);white-space:nowrap}
