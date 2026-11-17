@@ -1,0 +1,8 @@
+/* Online Presence Co. — site-wide type (2026-11-16). Albert Sans, SIL Open Font License. */
+@font-face{font-family:"Albert Sans";src:url(/fonts/albert-sans-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+:root{--aw-font-sans:"Albert Sans","Helvetica Neue",Arial,system-ui,sans-serif;--aw-font-heading:"Albert Sans","Helvetica Neue",Arial,system-ui,sans-serif}
+body{font-family:"Albert Sans","Helvetica Neue",Arial,system-ui,sans-serif!important;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+h1,h2,h3,h4,.font-heading{font-family:"Albert Sans","Helvetica Neue",Arial,system-ui,sans-serif!important;letter-spacing:-.02em}
+h1,h2{font-weight:500!important}
+#header.dark a svg path[stroke="#113359"]{stroke:#fff}
+#header.dark a svg circle[fill="#113359"]{fill:#fff}

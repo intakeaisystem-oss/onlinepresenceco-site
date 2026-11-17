@@ -4,7 +4,7 @@
    footer and inner-page components, and defines the fin-* blocks used by the home page. */
 :root,.dark{
   --fin-ink:#0b0b0c;--fin-body:#3d4148;--fin-mute:#6b7280;--fin-line:#e6e8ec;--fin-mist:#f5f7fa;--fin-navy:#113359;--fin-navy-2:#0d2744;--fin-night:#000;--fin-blue:#1f5fd1;
-  --fin-font:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
+  --fin-font:"Albert Sans","Helvetica Neue",Arial,system-ui,sans-serif;
   --aw-font-sans:var(--fin-font);--aw-font-heading:var(--fin-font);--aw-font-serif:var(--fin-font);
   --aw-color-primary:#113359;--aw-color-secondary:#0d2744;--aw-color-accent:#113359;--aw-color-link:#1f5fd1;
   --aw-color-text-heading:#0b0b0c;--aw-color-text-default:#3d4148;--aw-color-text-muted:#6b7280;--aw-color-bg-page:#fff;
@@ -551,8 +551,8 @@ i.t svg{width:12px;height:12px;fill:none;stroke:var(--fin-navy);stroke-width:2;s
 @media(min-width:860px){.fin-proof dl{grid-template-columns:repeat(4,1fr)}.fin-proof dl>div{padding:28px 24px}.fin-proof dl>div:first-child{padding-left:0}.fin-proof dl>div+div{border-left:1px solid var(--fin-line);padding-left:24px}.fin-proof dl>div:nth-child(n+3){border-top:0}}
 
 /* ===== v6 (2026-11-16f): Inter Tight headings + Inter text, calmer hierarchy ===== */
-@font-face{font-family:"Inter";src:url(/fonts/inter-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
-@font-face{font-family:"Inter Tight";src:url(/fonts/inter-tight-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+
 :root,.dark{--fin-head:"Inter Tight","Inter","Helvetica Neue",Arial,system-ui,sans-serif;--aw-font-heading:var(--fin-head)}
 body{font-size:1rem;line-height:1.6;letter-spacing:-.006em;font-feature-settings:"cv11","ss01";color:#41464f}
 h1,h2,h3,h4,.font-heading,.fin-h1,.fin-h2,.fin-h3,.opc-h2,.opc-ph h1,.fin-proof dt,.fin-steps3 b,.fin-sys>li>b,.fin-acc b,.fin-fbrand,#header a>.text-heading{font-family:var(--fin-head)!important}
@@ -576,3 +576,22 @@ h2,.fin-h2,.opc-h2{letter-spacing:-.02em!important}
 .fin-caps h3,.fin-points b,.fin-audl b,.fin-probs b,.fin-flow b,.fin-card h3,.fin-book-alt p,h3,h4{letter-spacing:-.01em!important}
 #header a>.text-heading,.fin-fbrand{letter-spacing:-.015em!important}
 .fin-proof dt{font-size:clamp(1.5rem,4.4vw,2.05rem);white-space:nowrap}
+
+/* ===== v7 (2026-11-16g): Albert Sans, set the way Finsider sets Aeonik ===== */
+@font-face{font-family:"Albert Sans";src:url(/fonts/albert-sans-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+:root,.dark{--fin-head:"Albert Sans","Helvetica Neue",Arial,system-ui,sans-serif;--fin-ink:#000;--aw-color-text-heading:#000}
+body{font-size:1rem;line-height:1.5;letter-spacing:-.01em;font-feature-settings:normal;color:#1d2026}
+h1,.fin-h1,.opc-ph h1{font-weight:400!important;letter-spacing:-.035em!important}
+h2,.fin-h2,.opc-h2{font-weight:400!important;letter-spacing:-.012em!important}
+.fin-h1{font-size:clamp(2.5rem,7.6vw,4.1rem);line-height:1.02}
+.fin-h2{font-size:clamp(2rem,5.4vw,3.6rem);line-height:1.05}
+h3,h4,.fin-h3,.opc-card h3,.fin-caps h3,.fin-points b,.fin-audl b,.fin-probs b,.fin-flow b,.fin-card h3,.fin-book-alt p{font-weight:500!important;letter-spacing:-.01em!important}
+.fin-proof dt,.fin-steps3 b,.fin-sys>li>b{font-weight:400;letter-spacing:-.02em}
+.fin-acc b{font-weight:400;letter-spacing:-.015em}
+.fin-lede{font-size:1.125rem;line-height:1.5;color:#2a2e35;letter-spacing:-.01em}
+#header a>.text-heading,.fin-fbrand{font-weight:500!important;letter-spacing:-.02em!important}
+#header nav a,#header nav button{font-weight:400!important;color:#000!important;font-size:.95rem}
+.fin-btn,.opc-btn-sun,.fin-btn-o,.opc-btn-ghost,#header a.btn-primary{font-weight:400!important;font-size:1rem;letter-spacing:-.005em}
+.fin-bar{background:#000;font-size:.88rem}
+#header nav.hidden + div a.btn-primary,#header a.btn-primary{background:#000!important}
+#header a.btn-primary:hover{background:#1d2026!important}
