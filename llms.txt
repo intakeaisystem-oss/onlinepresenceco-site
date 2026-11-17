@@ -1,15 +1,12 @@
 # Online Presence Co.
 
-> Online Presence Co. helps businesses get found and chosen online. Its core strengths are SEO and AI search optimization (GEO), backed by fast websites, Google Business Profile setup, call and booking options, and hosting. It serves any U.S. business customers look up before they buy, and also builds English websites for manufacturers and suppliers that sell to the United States. Based in Illinois, USA, since 2024.
+> Online Presence Co. helps businesses get found and chosen online. Its core strengths are SEO and AI search optimization (GEO), backed by fast websites, Google Business Profile setup, call and booking options, and hosting. It serves any U.S. business customers look up before they buy. Based in Illinois, USA, since 2024.
 
 ## Key facts
 - Business: Online Presence Co., Illinois, USA. Email: info@onlinepresenceco.com. Phone: +1 (630) 765-0559.
-- Serves manufacturers, factories, exporters, wholesalers, distributors and brands outside the U.S. that sell to American buyers.
-- Site languages: English, Simplified Chinese, Traditional Chinese, Spanish, French, Vietnamese, Korean.
-- No price list: every job is quoted in writing after a short conversation. No promises of orders, sales or rankings.
-- Not a freight forwarder, customs broker or law firm.
+- No price list: every job is quoted in writing after a free audit. No promises of rankings.
 
-## For U.S. businesses of any kind
+## Services
 Online Presence Co. also works with any U.S. business customers look up before they buy: trades, mobile services such as detailing, salons, restaurants, clinics, shops and professional offices. SEO and AI search (GEO) are its core strengths.
 - [SEO](https://onlinepresenceco.com/local/services/local-seo/): Pages built around what customers search for, structured so Google can read them and show them for the right searches.
 - [AI search (GEO)](https://onlinepresenceco.com/local/services/ai-search/): Clear, consistent business facts and structured data so ChatGPT, Gemini and Google AI answers can name a business and describe it correctly.
@@ -19,29 +16,3 @@ Online Presence Co. also works with any U.S. business customers look up before t
 - [Hosting and care](https://onlinepresenceco.com/local/services/hosting-care/): Hosting, content updates, fixes and monitoring.
 - How it works: free audit, written scope and quote, build with owner approval, then hosting and ongoing improvement. [Details](https://onlinepresenceco.com/local/how-it-works/)
 - Start: [free audit request](https://onlinepresenceco.com/local/contact/) or [book a 15-minute call](https://onlinepresenceco.com/local/book/). Operating from Illinois since 2024.
-
-## Services
-- [English websites for U.S. buyers](https://onlinepresenceco.com/services/websites/): A fast, mobile-friendly company website written in clear American English: what you make, your capabilities, quality, certifications, MOQ and lead times, and a quote form that asks for the right details.
-- [SEO and GEO (AI search)](https://onlinepresenceco.com/services/seo-geo/): Help Google and AI assistants such as ChatGPT, Gemini, Perplexity and Google AI Overviews understand what you make, so you can show up when U.S. buyers search.
-- [AI tools for your business](https://onlinepresenceco.com/services/ai-tools/): Small AI tools that use your own catalog and documents to draft answers faster. AI can make mistakes, so a person on your side reviews and stays in control.
-- [U.S. shipping and pricing fixes](https://onlinepresenceco.com/services/shipping-pricing/): Show cost and delivery the way American buyers expect, so they can estimate the real price before they write.
-- [Mini workflows and automation](https://onlinepresenceco.com/services/workflows/): Small automations that stop inquiries from getting lost and cut manual copying and retyping.
-- [Store and checkout fixes](https://onlinepresenceco.com/services/store-fixes/): If you sell directly to U.S. customers on your own store, we fix what makes them leave before paying.
-
-## Languages
-- English: https://onlinepresenceco.com/
-- 简体中文: https://onlinepresenceco.com/zh/
-- 繁體中文: https://onlinepresenceco.com/zh-hant/
-- Español: https://onlinepresenceco.com/es/
-- Français: https://onlinepresenceco.com/fr/
-- Tiếng Việt: https://onlinepresenceco.com/vi/
-- 한국어: https://onlinepresenceco.com/ko/
-
-## What is GEO?
-GEO (generative engine optimization) means making a supplier's pages clear and factual enough that AI assistants like ChatGPT, Gemini and Perplexity can understand and cite them when U.S. buyers ask for suppliers.
-
-## Pages
-- [How it works](https://onlinepresenceco.com/how-it-works/)
-- [FAQ](https://onlinepresenceco.com/faq/)
-- [Contact / free gap check](https://onlinepresenceco.com/contact/)
-- [Sample supplier site (made-up company)](https://onlinepresenceco.com/samples/supplier/)
