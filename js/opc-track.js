@@ -119,6 +119,11 @@
       gtagLoaded = true;
       W.gtag = W.gtag || gtag;
       W.gtag("consent", "default", consentPayload(true));
+      /* We advertise in the U.S. only. A stray visitor from the EEA, UK or Switzerland gets "denied":
+         Google's consent policy applies there, and a region-specific default wins over the general one. */
+      var eu = consentPayload(false);
+      eu.region = ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "IS", "LI", "NO", "GB", "CH"];
+      W.gtag("consent", "default", eu);
       W.gtag("js", new Date());
       if (C.ga4) W.gtag("config", C.ga4);
       if (C.googleAds) W.gtag("config", C.googleAds, { allow_enhanced_conversions: true });
