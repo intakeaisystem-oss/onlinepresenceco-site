@@ -1,11 +1,19 @@
-/* Online Presence Co. - attribution, consent and measurement. No dependencies. 2026-11-16.
+/* Online Presence Co. - attribution, consent and measurement. No dependencies.
+ * 2026-11-16, revised after independent review.
  *
- * 1. Attribution  Reads UTMs and ad click IDs from the address bar, keeps the first touch (90 days)
- *                 and the latest touch in this browser, and hands them to every lead form through
- *                 window.opcAttr(). Field names match the backend (Apex.gs APEX_ATTR_RULES).
- * 2. Consent      Global Privacy Control, Do Not Track or "No thanks" = no ad or analytics tags,
- *                 no click IDs stored or sent, ad_consent=0 on the lead. Google Consent Mode v2
- *                 signals are set before any Google tag loads.
+ * 1. Attribution  Reads UTMs and ad click IDs from the address bar. Keeps three small records in this
+ *                 browser's localStorage, each for 90 days:
+ *                   opc_ft  first touch (source, medium, campaign, landing page)
+ *                   opc_lt  latest touch (UTMs or the referring site)
+ *                   opc_ck  the last PAID click (click IDs + its UTMs). A later visit through an unpaid
+ *                           search result or another site never erases it.
+ *                 window.opcAttr() hands them to every lead form. Field names match the backend
+ *                 (Apex.gs APEX_ATTR_RULES).
+ * 2. Consent      Global Privacy Control, Do Not Track or "No thanks" = no ad or analytics tags, no
+ *                 click ID stored or sent, ad_consent=0 on the lead. The choice is also held in memory,
+ *                 so it holds even when the browser blocks storage. If storage is blocked and no
+ *                 choice was made, nothing is assumed: no tags. The backend applies the same rule and
+ *                 treats a missing flag as "no".
  * 3. Tags         Google tag (GA4 + Google Ads) and Meta Pixel load only when their ID is set in
  *                 /js/opc-config.js and consent allows it.
  * 4. Events       window.opcTrack(name, params): cta_click, call_tap, form_start, form_step,
@@ -13,14 +21,14 @@
  *                 and the server-side event so Meta counts the pair once.
  * 5. Beacon       One cookieless first-party page event to our own backend when the page is left
  *                 (path, referrer host, UTMs, scroll, seconds, form start/submit). No IP, no
- *                 cookie, no free text. Skipped when GPC / DNT is on.
+ *                 cookie, no free text. Skipped when GPC / DNT is on or the visitor said no.
  */
 (function () {
   "use strict";
   var W = window, D = document, C = W.OPC_CONFIG || {};
   var UTM = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
   var CLICK = ["gclid", "gbraid", "wbraid", "fbclid"];
-  var FT_KEY = "opc_ft", LT_KEY = "opc_lt", CONSENT_KEY = "opc_consent", VISIT_KEY = "opc_visit";
+  var FT_KEY = "opc_ft", LT_KEY = "opc_lt", CK_KEY = "opc_ck", CONSENT_KEY = "opc_consent", VISIT_KEY = "opc_visit";
   var NINETY_DAYS = 90 * 24 * 3600 * 1000;
 
   /* ---------- small helpers (storage can throw in private mode) ---------- */
@@ -34,13 +42,19 @@
   function pathOk(p) { p = String(p || "/").split(/[?#]/)[0]; return /^\/[A-Za-z0-9\/_\-.]{0,150}$/.test(p) ? p : "/"; }
   function host(u) { try { return new URL(u).hostname.toLowerCase().replace(/[^a-z0-9.\-]/g, "").slice(0, 100); } catch (e) { return ""; } }
   function cookie(n) { var m = D.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : ""; }
+  function fresh(rec) { return rec && rec.t && Date.now() - rec.t <= NINETY_DAYS ? rec : null; }
+  var storageOk = (function () { try { localStorage.setItem("opc_t", "1"); localStorage.removeItem("opc_t"); return true; } catch (e) { return false; } })();
 
   /* ---------- consent ---------- */
   var signalOff = W.navigator.globalPrivacyControl === true || W.navigator.doNotTrack === "1" || W.doNotTrack === "1";
-  function choice() { return ls(CONSENT_KEY); }                 // "yes" | "no" | null
+  var mem = null;                                                // this page's choice, kept even if storage refuses it
+  function choice() { return mem || ls(CONSENT_KEY); }          // "yes" | "no" | null
   function granted() {
-    if (signalOff || choice() === "no") return false;
-    return C.consent === "optin" ? choice() === "yes" : true;
+    var c = choice();
+    if (signalOff || c === "no") return false;
+    if (c === "yes") return true;
+    if (!storageOk) return false;                                // cannot remember a "no", so do not assume a "yes"
+    return C.consent !== "optin";
   }
   var anyTag = !!(C.ga4 || C.googleAds || C.metaPixel);
 
@@ -50,25 +64,30 @@
   var here = pathOk(W.location.pathname);
   var refHost = host(D.referrer);
   if (refHost === W.location.hostname) refHost = "";
-  var SEARCH = /(^|\.)(google|bing|duckduckgo|yahoo|ecosia|brave)\./;
+  /* A search engine's results page, not every host that has "google" in it (calendar.google.com, mail.google.com). */
+  var SEARCH = /^(www\.)?(google|bing|duckduckgo|ecosia)\.[a-z]{2,3}(\.[a-z]{2})?$|^search\.(yahoo|brave)\.com$/;
 
-  function readUrl() {
-    var t = {}, has = false;
-    UTM.forEach(function (k) { var v = q.get(k); if (v) { t[k] = k === "utm_term" ? term(v) : slug(v, k === "utm_source" || k === "utm_medium" ? 60 : 100); has = has || !!t[k]; } });
-    CLICK.forEach(function (k) { var v = idOk(q.get(k)); if (v) { t[k] = v; has = true; } });
-    return has ? t : null;
-  }
+  var urlUtm = {}, urlClick = {}, hasUtm = false, hasClick = false;
+  UTM.forEach(function (k) { var v = q.get(k); if (v) { urlUtm[k] = k === "utm_term" ? term(v) : slug(v, k === "utm_source" || k === "utm_medium" ? 60 : 100); hasUtm = hasUtm || !!urlUtm[k]; } });
+  CLICK.forEach(function (k) { var v = idOk(q.get(k)); if (v) { urlClick[k] = v; hasClick = true; } });
 
-  var touch = readUrl();
-  if (!touch && refHost && !ss(LT_KEY + "_s")) {
-    touch = { utm_source: slug(refHost.replace(/^www\./, ""), 60), utm_medium: SEARCH.test(refHost) ? "organic" : "referral" };
-  }
+  var touch = null;
+  if (hasUtm || hasClick) { touch = {}; UTM.forEach(function (k) { if (urlUtm[k]) touch[k] = urlUtm[k]; }); }
+  else if (refHost && !ss(LT_KEY + "_s")) touch = { utm_source: slug(refHost.replace(/^www\./, ""), 60), utm_medium: SEARCH.test(refHost) ? "organic" : "referral" };
   if (touch) {
     touch.landing = here; touch.t = now; touch.ref = refHost;
-    if (!granted()) CLICK.forEach(function (k) { delete touch[k]; });      // no click IDs without consent
     ls(LT_KEY, JSON.stringify(touch));
-    var ft = json(ls(FT_KEY));
-    if (!ft || !ft.t || now - ft.t > NINETY_DAYS) ls(FT_KEY, JSON.stringify({ s: touch.utm_source || "", m: touch.utm_medium || "", c: touch.utm_campaign || "", l: here, t: now }));
+    if (!fresh(json(ls(FT_KEY)))) ls(FT_KEY, JSON.stringify({ s: touch.utm_source || "", m: touch.utm_medium || "", c: touch.utm_campaign || "", l: here, t: now }));
+  }
+  /* The paid click: its IDs and the UTMs that came with it. Written only with consent, and only by a real
+     ad click, so an unpaid return visit cannot overwrite it. In opt-in mode it waits in memory for "OK". */
+  var pendingClick = null;
+  function saveClick(rec) { ls(CK_KEY, JSON.stringify(rec)); }
+  if (hasClick) {
+    var rec = { t: now, landing: here };
+    CLICK.forEach(function (k) { if (urlClick[k]) rec[k] = urlClick[k]; });
+    UTM.forEach(function (k) { if (urlUtm[k]) rec[k] = urlUtm[k]; });
+    if (granted()) saveClick(rec); else if (!signalOff && choice() !== "no") pendingClick = rec;
   }
   ss(LT_KEY + "_s", "1");
   if (!ss("opc_land")) ss("opc_land", here);
@@ -79,18 +98,22 @@
 
   /** Everything a lead form should post alongside its own fields. Empty values are left out. */
   W.opcAttr = function () {
-    var lt = json(ls(LT_KEY)) || {}, f = json(ls(FT_KEY)) || {}, ok = granted(), out = {};
-    if (lt.t && now - lt.t > NINETY_DAYS) lt = {};
-    UTM.forEach(function (k) { if (lt[k]) out[k] = lt[k]; });
+    var ok = granted(), out = {};
+    var lt = fresh(json(ls(LT_KEY))) || {}, f = fresh(json(ls(FT_KEY))) || {};
+    var ck = ok ? (fresh(json(ls(CK_KEY))) || pendingClick) : null;   // pendingClick: consent given but storage refused the write
+    var base = ck || lt;                                         // a paid click within 90 days outranks a later unpaid visit
+    UTM.forEach(function (k) { if (base[k]) out[k] = base[k]; });
+    if (ck) {
+      CLICK.forEach(function (k) { if (ck[k]) out[k] = ck[k]; });
+      if (ck.fbclid) out.fbc = "fb.1." + ck.t + "." + ck.fbclid;
+    }
     if (ok) {
-      CLICK.forEach(function (k) { if (lt[k]) out[k] = lt[k]; });
       var fbp = cookie("_fbp"), fbc = cookie("_fbc");
       if (/^fb\.\d\.\d{10,13}\.\d{5,20}$/.test(fbp)) out.fbp = fbp;
       if (/^fb\.\d\.\d{10,13}\.[A-Za-z0-9_\-]{10,300}$/.test(fbc)) out.fbc = fbc;
-      else if (lt.fbclid) out.fbc = "fb.1." + (lt.t || now) + "." + lt.fbclid;
       out.ua = String(W.navigator.userAgent || "").slice(0, 300);
     }
-    out.landing = lt.landing || ss("opc_land") || here;
+    out.landing = base.landing || ss("opc_land") || here;
     if (lt.ref) out.referrer = lt.ref;
     if (f.s) out.first_source = f.s;
     if (f.m) out.first_medium = f.m;
@@ -162,11 +185,11 @@
       }
       W.gtag("event", name, clean);
       if (name === "generate_lead" && C.googleAds && C.googleAdsLeadLabel) W.gtag("event", "conversion", { send_to: C.googleAds + "/" + C.googleAdsLeadLabel, transaction_id: EVENT_ID });
-      if (name === "book_view" && C.googleAds && C.googleAdsBookLabel) W.gtag("event", "conversion", { send_to: C.googleAds + "/" + C.googleAdsBookLabel, transaction_id: EVENT_ID + "-b" });
+      if (name === "book_view" && C.googleAds && C.googleAdsBookLabel) W.gtag("event", "conversion", { send_to: C.googleAds + "/" + C.googleAdsBookLabel, transaction_id: p.id || EVENT_ID + "-b" });
     }
     if (fbLoaded) {
       if (name === "generate_lead") W.fbq("track", "Lead", { content_name: clean.form || "" }, { eventID: EVENT_ID });
-      else if (name === "book_view") W.fbq("track", "Schedule", {}, { eventID: EVENT_ID + "-b" });
+      else if (name === "book_view") W.fbq("trackCustom", "BookingPageView", {}, { eventID: (p.id || EVENT_ID) + "-b" });   // a page view, not a booking
       else if (name === "call_tap") W.fbq("track", "Contact", {}, { eventID: EVENT_ID + "-c" });
       else if (name === "form_start") W.fbq("trackCustom", "FormStart", { form: clean.form || "" });
     }
@@ -194,19 +217,26 @@
 
   /* ---------- first-party beacon (backend contract: Code.gs EVENT_RULES) ---------- */
   var FORM_FIELDS = ["path", "name", "business", "business_type", "website", "phone", "email", "best_time", "consent", "services", "hear_about"];
-  var sent = 0, t0 = now;
+  var sent = false, t0 = now;
+  /* The backend's weekly digest counts form starts by kind (audit | call). The kind is known for sure only
+     at submit, so for a started-but-unsent form read it the way the form itself decides: website given = audit. */
+  function formKind() {
+    if (/^(audit|call)$/.test(state.form)) return state.form;
+    if (!state.started) return "";
+    var f = D.querySelector("[data-lp-form],[data-form]"), w = f && f.elements && f.elements.website;
+    return w && String(w.value || "").trim() ? "audit" : "call";
+  }
   function beacon() {
-    if (!C.beacon || !C.leadEndpoint || signalOff || choice() === "no" || sent >= 2 || !W.navigator.sendBeacon) return;
-    sent++;
-    var lt = json(ls(LT_KEY)) || {}, b = new URLSearchParams();
+    if (sent || !C.beacon || !C.leadEndpoint || signalOff || choice() === "no" || !W.navigator.sendBeacon) return;
+    sent = true;                                                  // one event per page view, whichever leave signal comes first
+    var lt = fresh(json(ls(LT_KEY))) || {}, b = new URLSearchParams();
     b.set("kind", "event"); b.set("v", "1"); b.set("page_id", PAGE_ID); b.set("visit_id", VISIT_ID);
     b.set("page", here.slice(0, 200));
     if (refHost) b.set("ref", refHost);
     ["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) { if (lt[k]) b.set(k, slug(lt[k], 60)); });
     b.set("scroll", String(state.maxScroll));
     b.set("secs", String(Math.min(3600, Math.round((Date.now() - t0) / 1000))));
-    var form = /^(audit|call)$/.test(state.form) ? state.form : "";
-    b.set("form", form);
+    b.set("form", formKind());
     b.set("started", String(state.started)); b.set("submitted", String(state.submitted)); b.set("call_tap", String(state.callTap));
     if (FORM_FIELDS.indexOf(state.lastField) !== -1) b.set("last_field", state.lastField);
     try { W.navigator.sendBeacon(C.leadEndpoint, b); } catch (e) {}
@@ -214,7 +244,28 @@
   D.addEventListener("visibilitychange", function () { if (D.visibilityState === "hidden") beacon(); });
   W.addEventListener("pagehide", beacon);
 
-  /* ---------- notice bar (only when a third-party tag is configured) ---------- */
+  /* ---------- "No thanks": stop, forget the click, and remove the measurement cookies we can reach ---------- */
+  function dropCookies() {
+    var names = D.cookie.split(";").map(function (c) { return c.split("=")[0].trim(); })
+      .filter(function (n) { return /^(_ga|_gid|_gat|_gcl|_fbp|_fbc)/.test(n); });
+    var h = W.location.hostname, parts = h.split("."), domains = ["", h, "." + h];
+    if (parts.length > 2) domains.push("." + parts.slice(-2).join("."));
+    names.forEach(function (n) { domains.forEach(function (d) { D.cookie = n + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + (d ? "; domain=" + d : ""); }); });
+  }
+  function sayNo() {
+    mem = "no"; ls(CONSENT_KEY, "no");
+    pendingClick = null; ls(CK_KEY, null);
+    if (gtagLoaded) W.gtag("consent", "update", consentPayload(false));
+    if (fbLoaded && W.fbq) W.fbq("consent", "revoke");
+    dropCookies();
+  }
+  function sayYes() {
+    mem = "yes"; ls(CONSENT_KEY, "yes");
+    if (pendingClick) { saveClick(pendingClick); if (storageOk) pendingClick = null; }
+    loadTags();
+  }
+
+  /* ---------- notice (only when a third-party tag is configured) ---------- */
   function notice() {
     if (!anyTag || signalOff || choice()) return;
     var bar = D.createElement("div");
@@ -231,23 +282,34 @@
       return b;
     }
     var no = btn("No thanks", false), ok = btn("OK", true);
-    no.addEventListener("click", function () {
-      ls(CONSENT_KEY, "no");
-      if (gtagLoaded) W.gtag("consent", "update", consentPayload(false));
-      if (fbLoaded && W.fbq) W.fbq("consent", "revoke");
-      var lt = json(ls(LT_KEY)); if (lt) { CLICK.forEach(function (k) { delete lt[k]; }); ls(LT_KEY, JSON.stringify(lt)); }
-      bar.remove();
-    });
-    ok.addEventListener("click", function () { ls(CONSENT_KEY, "yes"); bar.remove(); loadTags(); });
+    no.addEventListener("click", function () { sayNo(); bar.remove(); });
+    ok.addEventListener("click", function () { sayYes(); bar.remove(); });
     bar.appendChild(txt); bar.appendChild(no); bar.appendChild(ok);
     D.body.insertBefore(bar, D.body.firstChild);
   }
 
-  /** Lets the privacy page offer "change my choice". */
-  W.opcConsentReset = function () { ls(CONSENT_KEY, null); W.location.reload(); };
+  /** The privacy page's "Change my cookie choice". Says so when there is nothing to change. */
+  W.opcConsentReset = function () {
+    var out = D.querySelector("[data-consent-status]");
+    function say(t) { if (out) out.textContent = " " + t; }
+    if (signalOff) return say("Your browser is sending a privacy signal, so nothing is loaded for you and there is nothing to change.");
+    if (!anyTag) return say("No ad or analytics tags are switched on right now, so there is nothing to change.");
+    mem = null; ls(CONSENT_KEY, null);
+    W.location.reload();
+  };
+
+  /* A booking-page view counts once: on the thank-you page only right after a lead from this tab,
+     on the booking page once per tab. Reloading, or opening the thank-you page directly, counts nothing. */
+  function bookView() {
+    if (!D.body || !D.body.hasAttribute("data-book")) return;
+    var lead = json(ss("opc_lead")), isThanks = D.body.getAttribute("data-lp") === "thanks";
+    if (isThanks && !(lead && lead.e)) return;
+    if (ss("opc_bv")) return;
+    ss("opc_bv", "1");
+    W.opcTrack("book_view", { page: here, id: lead && lead.e ? lead.e : EVENT_ID });
+  }
 
   loadTags();
-  if (D.readyState === "loading") D.addEventListener("DOMContentLoaded", notice); else notice();
-  if (D.body && D.body.hasAttribute("data-book")) W.opcTrack("book_view", { page: here });
-  else D.addEventListener("DOMContentLoaded", function () { if (D.body.hasAttribute("data-book")) W.opcTrack("book_view", { page: here }); });
+  if (D.readyState === "loading") D.addEventListener("DOMContentLoaded", function () { notice(); bookView(); });
+  else { notice(); bookView(); }
 })();
