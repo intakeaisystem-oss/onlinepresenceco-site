@@ -1,4 +1,4 @@
-/* Online Presence Co. - landing-page form (2026-11-16). Two short steps, one request to the lead backend.
+/* Online Presence Co. - landing-page form (2026-11-16; hidden attribution fields 2026-11-21). Two short steps, one request to the lead backend.
  * Field names follow the backend contract in Code.gs (path=audit|call) plus the attribution fields
  * from window.opcAttr() (opc-track.js). A website given = an "audit" lead (email needed to send it);
  * no website = a "call" lead. On success the visitor goes to /lp/thanks/ where they can pick a call time. */
@@ -25,6 +25,19 @@
     link_type: "Please describe your work in a few words, without a web address.",
     link_name: "Please type your name, without a web address."
   };
+  /* Hidden attribution fields (data-attr): a visible copy of what this form will send, filled on load and again
+     at submit. They come from window.opcAttr(), which applies the consent rules; click IDs come from nowhere else.
+     If the tracker is blocked, UTMs are read from the address bar instead (never a click ID). */
+  var ATTR_UTM = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+  function cleanUtm(x) { return String(x || "").trim().replace(/[^A-Za-z0-9._\- +]+/g, "-").slice(0, 100); }
+  function fillAttr() {
+    var a = W.opcAttr ? W.opcAttr() : null, q = new URLSearchParams(W.location.search);
+    Array.prototype.forEach.call(form.querySelectorAll("[data-attr]"), function (el) {
+      var k = el.name;
+      el.value = a ? (a[k] || "") : (ATTR_UTM.indexOf(k) !== -1 ? cleanUtm(q.get(k)) : "");
+    });
+  }
+  fillAttr();
   function hasLink(s) { return /(https?:\/\/|www\.|<a\s|\[url)/i.test(s); }   // same rule as the backend
   function v(n) { var el = form.elements[n]; return el ? String(el.value || "").trim() : ""; }
   function digits(s) { var d = String(s || "").replace(/\D/g, ""); return d.length === 11 && d.charAt(0) === "1" ? d.slice(1) : d; }
@@ -96,6 +109,8 @@
     b.set("page", W.location.pathname); b.set("response", "json");
     var a = W.opcAttr ? W.opcAttr() : {};
     Object.keys(a).forEach(function (k) { if (a[k] && !b.has(k)) b.set(k, a[k]); });
+    fillAttr();
+    ATTR_UTM.forEach(function (k) { var el = form.elements[k]; if (el && el.value && !b.has(k)) b.set(k, el.value); });
     if (!b.has("utm_source")) b.set("utm_source", "direct");
     send.disabled = true; send.textContent = "Sending…";
     var tries = 0;

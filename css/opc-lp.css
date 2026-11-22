@@ -87,6 +87,12 @@ section.mist{background:var(--mist)}
 .row.pick .tag{background:var(--navy);color:#fff}
 .caption{font-size:.82rem;color:var(--mute);margin-top:12px}
 
+.alt{margin-top:20px;font-size:.98rem}
+.alt a{font-weight:600;color:var(--navy);text-underline-offset:3px}
+@media(min-width:720px){.grid.c4{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.grid.c4{grid-template-columns:repeat(4,1fr)}}
+.end .btn.ghost{width:auto;min-width:260px;margin-top:12px}
+
 /* plain facts + faq */
 .facts{border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-top:26px;background:#fff}
 .facts dl{margin:0;display:grid;gap:12px}
